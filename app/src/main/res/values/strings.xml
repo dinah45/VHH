@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">VHH</string>
+    <string name="lets_get_started">Lets get Started</string>
+    <string name="login">Login</string>
+    <string name="signup">SignUp</string>
+    <string name="welcome_to">Welcome To</string>
+    <string name="skip">Skip</string>
+    <string name="health_education">Health Education</string>
+    <string name="awarness">Awareness</string>
+    <string name="monitoring">Monitoring</string>
+    <string name="educational_resources_and_information">Educational Resources and Information
+    on common health issues, Preventive care and healthy lifestyle</string>
+    <string name="track_your_health">Track Your Health metrics, such as blood pressure,
+        blood sugar levels and your weight</string>
+    <string name="health_tracking">Health Tracking</string>
+    <string name="telemedicine_consultation">Telemedicine Consultation</string>
+    <string name="connect_with_qualified">Connect with qualified health care professionals to
+        recieve medical advice and prescriptions</string>
+    <string name="medication_management">Prescribed treatment including notifications for
+        refills and dosage schedule</string>
+</resources>
