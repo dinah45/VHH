@@ -1,10 +1,31 @@
 <resources>
     <string name="app_name">VHH</string>
     <string name="lets_get_started">Lets get Started</string>
+    <string name="or_login_with">Or login with</string>
+    <string name="menu">Menu</string>
+    <string name="please_select_your_required_service">Please select your required service</string>
     <string name="login">Login</string>
-    <string name="signup">SignUp</string>
+    <string name="hello_there">Hello there,</string>
+    <string name="hello">Hello,</string>
+    <string name="email">Email</string>
+    <string name="dont_have_an_account">Dont have an account?</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="password">Password</string>
+    <string name="email_adress">Email Address</string>
+    <string name="gender">Gender</string>
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="continue_with_apple">Continue with Apple</string>
+    <string name="continue_with_email">Continue with Email</string>
+    <string name="first_aid">First Aid</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="region">Region</string>
+    <string name="sign_up">Sign Up</string>
     <string name="welcome_to">Welcome To</string>
     <string name="skip">Skip</string>
+    <string name="community">Community Support and Networking </string>
+    <string name="medication">Medication Management</string>
+    <string name="emergency_assistant">Emergency Assistant</string>
+    <string name="health_education_and_awareness">Health Education and Awareness</string>
     <string name="health_education">Health Education</string>
     <string name="awarness">Awareness</string>
     <string name="monitoring">Monitoring</string>
@@ -13,7 +34,7 @@
     <string name="track_your_health">Track Your Health metrics, such as blood pressure,
         blood sugar levels and your weight</string>
     <string name="health_tracking">Health Tracking</string>
-    <string name="telemedicine_consultation">Telemedicine Consultation</string>
+    <string name="telemedicine_consultation">Telemedicine Consultations</string>
     <string name="connect_with_qualified">Connect with qualified health care professionals to
         recieve medical advice and prescriptions</string>
     <string name="medication_management">Prescribed treatment including notifications for

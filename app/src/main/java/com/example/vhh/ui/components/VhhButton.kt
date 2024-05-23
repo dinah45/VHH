@@ -63,8 +63,8 @@ fun VhhButton1(
     text: String,
     processing: Boolean = false,
     enabled: Boolean = true,
-    color: Color =  Color.Gray.copy(0.7f),
-
+    color: Color =  Color(0xFF888888).copy(0.3f),
+//    leadingIcon: @Composable (() -> Unit)? = null,
 contentColor: Color = AppColor,
     onClick: () -> Unit
 ) {
@@ -81,6 +81,7 @@ contentColor: Color = AppColor,
             .fillMaxWidth()
             .padding(start = 16.dp, end = 16.dp),
         shape = RoundedCornerShape(20.dp),
+//leadingIcon = leadingIcon
     ) {
         if (processing) {
             CircularProgressIndicator(

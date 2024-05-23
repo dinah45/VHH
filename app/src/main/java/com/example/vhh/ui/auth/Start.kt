@@ -10,6 +10,7 @@ import androidx.compose.material.Text
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
@@ -19,11 +20,16 @@ import androidx.compose.ui.unit.sp
 import com.example.vhh.R
 import com.example.vhh.ui.components.VhhButton
 import com.example.vhh.ui.components.VhhButton1
+import com.example.vhh.ui.destinations.LoginDestination
+import com.example.vhh.ui.destinations.SignUpDestination
 import com.example.vhh.ui.theme.AppColor
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
-
+@ExperimentalComposeUiApi
+@Destination
 @Composable
-fun Start(){
+fun Start(navigator: DestinationsNavigator){
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -32,7 +38,6 @@ fun Start(){
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 Text(text = "VHH.",
-    fontSize = 34.sp,
     style = MaterialTheme.typography.headlineLarge,
     fontWeight = FontWeight.ExtraBold,
     color = AppColor)
@@ -40,14 +45,19 @@ Text(text = "VHH.",
         Spacer(modifier = Modifier.height(10.dp))
 
         Text(text = stringResource(id = R.string.lets_get_started),
-            fontSize = 15.sp,
+            fontSize = 18.sp,
             fontWeight = FontWeight.Bold,
             color = Color.Black
         )
         Spacer(modifier = Modifier.height(30.dp))
 
-        VhhButton(onClick = {  }, text = stringResource(id = R.string.login))
+        VhhButton(onClick = {
+            navigator.navigate(LoginDestination)
+        }, text = stringResource(id = R.string.login))
+        Spacer(modifier = Modifier.height(10.dp))
 
-        VhhButton1(onClick = {  }, text = stringResource(id = R.string.signup))
+        VhhButton1(onClick = {
+            navigator.navigate(SignUpDestination)
+        }, text = stringResource(id = R.string.sign_up))
     }
 }

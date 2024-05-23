@@ -2,6 +2,7 @@ package com.example.vhh.ui.onboarding
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -10,6 +11,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
@@ -22,6 +24,7 @@ import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -32,11 +35,17 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.vhh.R
+import com.example.vhh.ui.destinations.LoginDestination
+import com.example.vhh.ui.destinations.Onboard2Destination
+import com.example.vhh.ui.destinations.StartDestination
 import com.example.vhh.ui.theme.AppColor
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
-
+@ExperimentalComposeUiApi
+@Destination
 @Composable
-fun Onboard1 () {
+fun Onboard1 (navigator: DestinationsNavigator) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -48,15 +57,12 @@ fun Onboard1 () {
             modifier = Modifier.fillMaxSize()
         )
     }
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-    ) {
+
         Column(
 modifier = Modifier
     .fillMaxSize(),
             verticalArrangement = Arrangement.Top,
-            horizontalAlignment = Alignment.Start
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier.height(50.dp))
 Card(modifier = Modifier
@@ -64,7 +70,8 @@ Card(modifier = Modifier
     .wrapContentHeight()
     .width(70.dp)
     .padding(end = 16.dp)
-    .align(Alignment.End),
+    .align(Alignment.End)
+    .clickable { navigator.navigate(StartDestination) },
     backgroundColor = AppColor,
     contentColor = Color.White,
     shape = RoundedCornerShape(20.dp)
@@ -73,17 +80,18 @@ Card(modifier = Modifier
         color = Color.White,
         textAlign = TextAlign.Center)
 }
-            Spacer(modifier = Modifier.height(200.dp))
+            Spacer(modifier = Modifier.height(280.dp))
 
-            Text(text = stringResource(id = R.string.health_education), fontSize = 28.sp,
+            Text(text = stringResource(id = R.string.health_education), fontSize = 25.sp,
                 fontWeight = FontWeight.Bold, color = Color.White,
-                modifier = Modifier.padding(start = 60.dp)
+//                modifier = Modifier.padding(start = 70.dp)
                 )
             Row (
-                modifier = Modifier.padding(start = 80.dp)
+                modifier = Modifier, verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Absolute.Center
             ){
                 Text(
-                    text = "&", fontSize = 28.sp,
+                    text = "& ", fontSize = 25.sp,
                     fontWeight = FontWeight.Bold, color = Color.White,
                 )
                 Text(
@@ -91,27 +99,20 @@ Card(modifier = Modifier
                     fontWeight = FontWeight.Bold, color = Color.White,
                 )
             }
+            Spacer(modifier = Modifier.height(20.dp))
+
             Text(
                 text = stringResource(id = R.string.educational_resources_and_information),
-                fontSize = 20.sp,
+                fontSize = 15.sp,
+                textAlign = TextAlign.Center,
                 color = Color.White,
                 modifier = Modifier.padding(start = 20.dp, end = 16.dp)
             )
-            Spacer(modifier = Modifier.height(30.dp))
-            Card(modifier = Modifier
-                .wrapContentSize()
-                .wrapContentHeight()
-                .width(70.dp)
-                .padding(end = 16.dp)
-                .align(Alignment.CenterHorizontally),
-                backgroundColor = AppColor,
-                shape = RoundedCornerShape(50)
-            ) {
-                Image(imageVector = Icons.Default.ArrowForward, contentDescription = "",
-                    modifier = Modifier,
-                    contentScale = ContentScale.Fit,
-                    )
-            }
+            Spacer(modifier = Modifier.height(80.dp))
+            Image(painter = painterResource(id = R.drawable.next), contentDescription = "",
+                modifier = Modifier.clickable {
+                    navigator.navigate(Onboard2Destination) }
+                    .size(60.dp).align(Alignment.CenterHorizontally))
+
         }
     }
-}

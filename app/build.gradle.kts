@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.ksp)
+
 }
 
 android {
@@ -67,5 +69,27 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.compose.material)
+    // livedata
+    implementation(libs.livedata)
+    implementation(libs.livedata.runtime)
 
+    // viewModel
+    implementation(libs.viewmodel.compose)
+
+    // coil
+//    implementation(libs.coil.compose)
+
+//    // room
+//    implementation(libs.room)
+//    implementation(libs.room.ktx)
+//    ksp(libs.room.compiler)
+
+    // kotlinx.serialization
+//    implementation(libs.serialization)
+
+    //destination
+    implementation(libs.accompanist.systemuicontroller)
+    implementation(libs.destinations.core)
+    ksp(libs.destinations.ksp)
+    implementation(libs.accompanist.pager.indicator)
 }
