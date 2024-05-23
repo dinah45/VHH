@@ -109,7 +109,12 @@ style = MaterialTheme.typography.headlineLarge,
 //            keyboardType = KeyboardType.Email,
             maxLines = 1,
             colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = Color(0xFF888888).copy(0.3f)
+                backgroundColor = Color(0xFF888888).copy(0.3f),
+                focusedIndicatorColor = AppColor,
+                disabledIndicatorColor = Color(0xFF888888).copy(0.3f),
+                cursorColor = AppColor,
+                disabledLabelColor =  Color(0xFF888888).copy(0.3f),
+                focusedLabelColor = AppColor,
             ),
             shape = RoundedCornerShape(40)
         )
@@ -135,7 +140,12 @@ style = MaterialTheme.typography.headlineLarge,
             }),
             maxLines = 1,
             colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = Color(0xFF888888).copy(0.3f)
+                backgroundColor = Color(0xFF888888).copy(0.3f),
+                focusedIndicatorColor = AppColor,
+                disabledIndicatorColor = Color(0xFF888888).copy(0.3f),
+                cursorColor = AppColor,
+                disabledLabelColor =  Color(0xFF888888).copy(0.3f),
+                focusedLabelColor = AppColor,
             ),
             shape =  RoundedCornerShape(40)
         )
@@ -149,7 +159,7 @@ style = MaterialTheme.typography.headlineLarge,
                 navigator.navigate(HomeScreenDestination)
             }
         }
-        Spacer(modifier = Modifier.height(100.dp))
+        Spacer(modifier = Modifier.height(50.dp))
         Box(modifier = Modifier.fillMaxWidth().align(Alignment.CenterHorizontally)) {
             Text(
                 text = stringResource(id = R.string.or_login_with),

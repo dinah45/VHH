@@ -94,7 +94,7 @@ fun Onboard3 (navigator: DestinationsNavigator) {
                 text = stringResource(id = R.string.connect_with_qualified),
                 fontSize = 15.sp,
                 textAlign = TextAlign.Center,
-                color = Color.White,
+                color = Color.White.copy(0.7f),
                 modifier = Modifier.padding(start = 20.dp, end = 16.dp)
             )
             Spacer(modifier = Modifier.height(80.dp))

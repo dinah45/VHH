@@ -59,7 +59,8 @@ Card (
         horizontalArrangement = Arrangement.Absolute.SpaceBetween,
         verticalAlignment = Alignment.Bottom
     ) {
-        Image(painter = painterResource(id = R.drawable.whitesms), contentDescription = "")
+        Image(painter = painterResource(id = R.drawable.whitesms), contentDescription = "",
+            modifier = Modifier.clickable {  })
         Text(
             text = stringResource(id = R.string.menu),
             fontWeight = FontWeight.Bold,
@@ -68,7 +69,8 @@ Card (
             modifier = Modifier
                 .paddingFromBaseline(top = 10.dp)
         )
-        Image(painter = painterResource(id = R.drawable.bell), contentDescription = "")
+        Image(painter = painterResource(id = R.drawable.bell), contentDescription = "", modifier
+        = Modifier.clickable {  })
     }
 }
     Spacer(modifier = Modifier.height(10.dp))
@@ -76,6 +78,7 @@ Card (
         fontWeight = FontWeight.Bold,
         fontSize = 20.sp,
         textAlign = TextAlign.Center,
+        color = MaterialTheme.colorScheme.background,
         modifier = Modifier.padding(40.dp)
     )
     Card (

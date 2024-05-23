@@ -105,7 +105,12 @@ fun SignUp(navigator: DestinationsNavigator) {
                 }),
                 maxLines = 1,
                 colors = TextFieldDefaults.textFieldColors(
-                    backgroundColor = Color(0xFF888888).copy(0.3f)
+                    backgroundColor = Color(0xFF888888).copy(0.3f),
+                    focusedIndicatorColor = AppColor,
+                    disabledIndicatorColor = Color(0xFF888888).copy(0.3f),
+                    cursorColor = AppColor,
+                    disabledLabelColor =  Color(0xFF888888).copy(0.3f),
+                    focusedLabelColor = AppColor,
                 ),
                 shape =  RoundedCornerShape(40)
             )
@@ -131,7 +136,12 @@ fun SignUp(navigator: DestinationsNavigator) {
             }),
             maxLines = 1,
             colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = Color(0xFF888888).copy(0.3f)
+                backgroundColor = Color(0xFF888888).copy(0.3f),
+                focusedIndicatorColor = AppColor,
+                disabledIndicatorColor = Color(0xFF888888).copy(0.3f),
+                cursorColor = AppColor,
+                disabledLabelColor =  Color(0xFF888888).copy(0.3f),
+                focusedLabelColor = AppColor,
             ),
             shape =  RoundedCornerShape(40)
         )
@@ -157,7 +167,12 @@ fun SignUp(navigator: DestinationsNavigator) {
             }),
             maxLines = 1,
             colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = Color(0xFF888888).copy(0.3f)
+                backgroundColor = Color(0xFF888888).copy(0.3f),
+                focusedIndicatorColor = AppColor,
+                disabledIndicatorColor = Color(0xFF888888).copy(0.3f),
+                cursorColor = AppColor,
+                disabledLabelColor =  Color(0xFF888888).copy(0.3f),
+                focusedLabelColor = AppColor,
             ),
             shape =  RoundedCornerShape(40)
         )
@@ -183,7 +198,13 @@ fun SignUp(navigator: DestinationsNavigator) {
             }),
             maxLines = 1,
             colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = Color(0xFF888888).copy(0.3f)
+                backgroundColor = Color(0xFF888888).copy(0.3f),
+                focusedIndicatorColor = AppColor,
+                disabledIndicatorColor = Color(0xFF888888).copy(0.3f),
+                cursorColor = AppColor,
+                disabledLabelColor =  Color(0xFF888888).copy(0.3f),
+                focusedLabelColor = AppColor,
+
             ),
             shape =  RoundedCornerShape(40)
         )
