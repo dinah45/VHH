@@ -40,21 +40,18 @@ fun Start(navigator: DestinationsNavigator){
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 Text(text = stringResource(id = R.string.welcome_to),
-    style = MaterialTheme.typography.bodyLarge,
+    fontSize = 18.sp,
     fontWeight = FontWeight.Bold,
     color = AppColor)
-
-        Spacer(modifier = Modifier.height(10.dp))
 
         Image(painter = painterResource(id = R.drawable.image43), contentDescription = "",
             modifier =  Modifier.background(color = MaterialTheme.colorScheme.background))
 
         Text(text = stringResource(id = R.string.lets_get_started),
-            fontSize = 18.sp,
+            fontSize = 20.sp,
             fontWeight = FontWeight.ExtraBold,
             color = Color.Black
         )
-        Spacer(modifier = Modifier.height(30.dp))
 
         VhhButton(onClick = {
             navigator.navigate(LoginDestination)
