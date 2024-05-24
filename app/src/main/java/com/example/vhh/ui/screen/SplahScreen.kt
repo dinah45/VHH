@@ -18,7 +18,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.vhh.R
-import com.example.vhh.ui.destinations.WelcomeDestination
+import com.example.vhh.ui.destinations.Onboard1Destination
+//import com.example.vhh.ui.destinations.WelcomeDestination
 import com.example.vhh.ui.theme.AppColor
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
@@ -32,20 +33,14 @@ import kotlinx.coroutines.delay
 fun SplashScreen(navigator: DestinationsNavigator) {
     LaunchedEffect(key1 = Unit) {
         delay(2000)
-        navigator.navigate(WelcomeDestination)
+        navigator.navigate(Onboard1Destination)
     }
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(AppColor), contentAlignment = Alignment.Center
+            .background(color = MaterialTheme.colorScheme.background), contentAlignment = Alignment.Center
     ) {
-        Surface(
-            modifier = Modifier
-                .size(250.dp),
-            shape = CircleShape,
-            color = MaterialTheme.colorScheme.background
-        ) {
-            Image(painter = painterResource(id = R.drawable.logo), contentDescription = "")
+            Image(painter = painterResource(id = R.drawable.image43), contentDescription = "",
+                modifier =  Modifier.background(color = MaterialTheme.colorScheme.background))
         }
     }
-}

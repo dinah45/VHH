@@ -83,20 +83,22 @@ Card(modifier = Modifier
             Spacer(modifier = Modifier.height(280.dp))
 
             Text(text = stringResource(id = R.string.health_education), fontSize = 25.sp,
-                fontWeight = FontWeight.Bold, color = Color.White.copy(0.7f),
+                fontWeight = FontWeight.Bold, color = Color.White,
 //                modifier = Modifier.padding(start = 70.dp)
                 )
             Row (
                 modifier = Modifier, verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Absolute.Center
+                horizontalArrangement = Arrangement.Center
             ){
                 Text(
-                    text = "& ", fontSize = 25.sp,
-                    fontWeight = FontWeight.Bold, color = Color.White.copy(0.7f),
+                    text = "& ",
+                    fontSize = 25.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White,
                 )
                 Text(
                     text = stringResource(id = R.string.awarness), fontSize = 28.sp,
-                    fontWeight = FontWeight.Bold, color = Color.White.copy(0.7f),
+                    fontWeight = FontWeight.Bold, color = Color.White,
                 )
             }
             Spacer(modifier = Modifier.height(20.dp))
@@ -105,7 +107,7 @@ Card(modifier = Modifier
                 text = stringResource(id = R.string.educational_resources_and_information),
                 fontSize = 15.sp,
                 textAlign = TextAlign.Center,
-                color = Color.White.copy(0.7f),
+                color = Color.White,
                 modifier = Modifier.padding(start = 20.dp, end = 16.dp)
             )
             Spacer(modifier = Modifier.height(80.dp))

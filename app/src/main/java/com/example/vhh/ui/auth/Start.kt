@@ -1,5 +1,6 @@
 package com.example.vhh.ui.auth
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -37,16 +39,19 @@ fun Start(navigator: DestinationsNavigator){
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-Text(text = "VHH.",
-    style = MaterialTheme.typography.headlineLarge,
-    fontWeight = FontWeight.ExtraBold,
+Text(text = stringResource(id = R.string.welcome_to),
+    style = MaterialTheme.typography.bodyLarge,
+    fontWeight = FontWeight.Bold,
     color = AppColor)
 
         Spacer(modifier = Modifier.height(10.dp))
 
+        Image(painter = painterResource(id = R.drawable.image43), contentDescription = "",
+            modifier =  Modifier.background(color = MaterialTheme.colorScheme.background))
+
         Text(text = stringResource(id = R.string.lets_get_started),
             fontSize = 18.sp,
-            fontWeight = FontWeight.Bold,
+            fontWeight = FontWeight.ExtraBold,
             color = Color.Black
         )
         Spacer(modifier = Modifier.height(30.dp))

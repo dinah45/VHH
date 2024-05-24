@@ -82,7 +82,7 @@ fun Onboard4 (navigator: DestinationsNavigator) {
 
             Text(text = stringResource(id = R.string.medication), fontSize = 25.sp,
                 fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center, color = Color.White.copy(0.7f),
+                textAlign = TextAlign.Center, color = Color.White,
                 modifier = Modifier.padding(start = 50.dp, end = 50.dp)
             )
             Spacer(modifier = Modifier.height(20.dp))
@@ -90,7 +90,7 @@ fun Onboard4 (navigator: DestinationsNavigator) {
                 text = stringResource(id = R.string.medication_management),
                 fontSize = 15.sp,
                 textAlign = TextAlign.Center,
-                color = Color.White.copy(0.7f),
+                color = Color.White,
                 modifier = Modifier.padding(start = 20.dp, end = 16.dp)
             )
             Spacer(modifier = Modifier.height(80.dp))
