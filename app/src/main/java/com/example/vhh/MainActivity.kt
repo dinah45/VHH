@@ -19,7 +19,7 @@ import com.example.vhh.ui.auth.SignUp
 import com.example.vhh.ui.auth.Start
 import com.example.vhh.ui.components.VhhButton
 import com.example.vhh.ui.screen.SplashScreen
-import com.example.vhh.ui.screen.Welcome
+//import com.example.vhh.ui.screen.Welcome
 import com.example.vhh.ui.onboarding.Onboard1
 import com.example.vhh.ui.onboarding.Onboard2
 import com.example.vhh.ui.onboarding.Onboard3
