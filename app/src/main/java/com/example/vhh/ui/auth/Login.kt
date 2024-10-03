@@ -39,11 +39,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.vhh.R
 import com.example.vhh.ui.components.VhhButton
+import com.example.vhh.ui.components.VhhInputField
 import com.example.vhh.ui.destinations.HomeScreenDestination
 import com.example.vhh.ui.destinations.SignUpDestination
 import com.example.vhh.ui.theme.AppColor
@@ -68,9 +71,16 @@ fun Login() {
     var message by remember {
         mutableStateOf("")
     }
+    val emailRegex = Regex(pattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")
+
+    //to check if the email is valid
+    var isEmailValid by remember {
+        mutableStateOf(true)
+    }
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .padding(horizontal = 20.dp, vertical = 20.dp)
             .background(MaterialTheme.colorScheme.background),
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.Start
@@ -81,7 +91,6 @@ fun Login() {
 fontSize = 25.sp,
             fontWeight = FontWeight.Bold,
             color = AppColor,
-            modifier = Modifier.padding(start = 16.dp)
         )
         Spacer(modifier = Modifier.height(10.dp))
 
@@ -89,72 +98,54 @@ fontSize = 25.sp,
             text = stringResource(id = R.string.login),
 style = MaterialTheme.typography.headlineLarge,
             color = AppColor,
-            modifier = Modifier.padding(start = 16.dp)
         )
         Spacer(modifier = Modifier.height(40.dp))
-        TextField(value = email, onValueChange = {email = it},
-            label = {
+        VhhInputField(
+            value = email,
+            onValueChange = { email = it.copy(text = it.text.trim())},
+            placeholder = stringResource(id = R.string.email),
+            keyboardType = KeyboardType.Email,
+            isError = !isEmailValid)
+            if (!isEmailValid) {
                 Text(
-                    text = "Email",
-                    color = Color.Gray,
-                    style = androidx.compose.material.MaterialTheme.typography.caption
+                    text = "please_enter_a_valid_email",
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = Color.Red
                 )
-            },
-            modifier = Modifier
-                .fillMaxWidth()
-                .size(50.dp)
-                .padding(horizontal = 16.dp),
-            keyboardOptions = KeyboardOptions.Default.copy(
-                imeAction = ImeAction.Done
-            ),
-            keyboardActions = KeyboardActions (onDone = {
-                keyboardController?.hide()
-            }),
-//            keyboardType = KeyboardType.Email,
-            maxLines = 1,
-            colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = Color(0xFF888888).copy(0.3f),
-                focusedIndicatorColor = AppColor,
-                disabledIndicatorColor = Color(0xFF888888).copy(0.3f),
-                cursorColor = AppColor,
-                disabledLabelColor =  Color(0xFF888888).copy(0.3f),
-                focusedLabelColor = AppColor,
-            ),
-            shape = RoundedCornerShape(40)
-        )
+            }
+
+        //show error if email is not valid
+        if (isError) {
+            Text(
+                text = message,
+                style = MaterialTheme.typography.bodyLarge,
+                color = Color.Red
+            )
+        }
         Spacer(modifier = Modifier.height(10.dp))
-        TextField(value = password, onValueChange = {password = it},
-            label = {
-                Text(
-                    text = "Password",
-                    color = Color.Gray,
-                    style = androidx.compose.material.MaterialTheme.typography.caption
-                )
+        VhhInputField(
+            value = password,
+            onValueChange = {
+                isError = false
+                password = it
             },
-            modifier = Modifier
-                .fillMaxWidth()
-                .size(50.dp)
-                .padding(horizontal = 16.dp),
-            keyboardOptions = KeyboardOptions.Default.copy(
-                imeAction = ImeAction.Done
-            ),
-//            keyboardType = KeyboardType.Password,
-            keyboardActions = KeyboardActions (onDone = {
-                keyboardController?.hide()
-            }),
-            maxLines = 1,
-            colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = Color(0xFF888888).copy(0.3f),
-                focusedIndicatorColor = AppColor,
-                disabledIndicatorColor = Color(0xFF888888).copy(0.3f),
-                cursorColor = AppColor,
-                disabledLabelColor =  Color(0xFF888888).copy(0.3f),
-                focusedLabelColor = AppColor,
-            ),
-            shape =  RoundedCornerShape(40)
+            placeholder = stringResource(id = R.string.password),
+            keyboardType = KeyboardType.Password,
+            isError = isError,
         )
+        //show error if email is not valid
+        if (isError) {
+            Text(
+                text = message,
+                style = MaterialTheme.typography.bodyLarge,
+                color = Color.Red
+            )
+        }
         Spacer(modifier = Modifier.height(50.dp))
         VhhButton(text = stringResource(id = R.string.login)) {
+            isEmailValid = emailRegex.matches(input = email.text)
+            if (isEmailValid) {
+                processing = true}
             if (email.text.isEmpty() && password.text.isEmpty()) {
                 Toast.makeText(context, "Please enter your email and password", Toast.LENGTH_SHORT).show()
             }else if (email.text.isEmpty() || password.text.isEmpty()) {
@@ -169,7 +160,8 @@ style = MaterialTheme.typography.headlineLarge,
                 text = stringResource(id = R.string.or_login_with),
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
-                color = AppColor, modifier = Modifier.padding(start = 150.dp)
+                color = AppColor,
+                modifier = Modifier.padding(start = 100.dp)
             )
         }
         Spacer(modifier = Modifier.height(80.dp))
@@ -206,7 +198,6 @@ style = MaterialTheme.typography.headlineLarge,
             modifier = Modifier
                 .fillMaxWidth()
                 .size(32.dp)
-                .padding(horizontal = 16.dp)
                 .clickable { },
             shape = RoundedCornerShape(40),
             color = Color(0xFF888888).copy(0.3f),
@@ -234,7 +225,6 @@ style = MaterialTheme.typography.headlineLarge,
             modifier = Modifier
                 .fillMaxWidth()
                 .size(32.dp)
-                .padding(horizontal = 16.dp)
                 .clickable { },
             shape = RoundedCornerShape(40),
             color = Color(0xFF888888).copy(0.3f),

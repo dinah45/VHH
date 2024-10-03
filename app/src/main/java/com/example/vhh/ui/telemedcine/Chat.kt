@@ -62,7 +62,7 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @Destination
 @Composable
 fun Chat (
-//   navigator: DestinationsNavigator
+   navigator: DestinationsNavigator
 ) {
     val scrollState = rememberScrollState()
     Column(

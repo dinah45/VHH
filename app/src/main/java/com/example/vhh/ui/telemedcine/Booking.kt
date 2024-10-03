@@ -61,7 +61,7 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @Destination
 @Composable
 fun Booking (
-//   navigator: DestinationsNavigator
+   navigator: DestinationsNavigator
 ) {
     val scrollState = rememberScrollState()
     Column(

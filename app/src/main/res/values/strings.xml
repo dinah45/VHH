@@ -5,6 +5,9 @@
     <string name="profile">Profile</string>
     <string name="notifications">Notifications</string>
     <string name="menu">Menu</string>
+    <string name="home">Home</string>
+    <string name="booking">Booking</string>
+    <string name="chat">Chat</string>
     <string name="change">Change</string>
     <string name="find_doctor">Find Doctor</string>
     <string name="cart">Cart</string>

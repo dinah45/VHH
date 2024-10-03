@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.ScrollableDefaults
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -46,6 +47,7 @@ import com.example.vhh.R
 import com.example.vhh.ui.destinations.HealthEducationDestination
 import com.example.vhh.ui.destinations.MedicationDestination
 import com.example.vhh.ui.destinations.PharmacyDestination
+import com.example.vhh.ui.navigation.BottomNav
 import com.example.vhh.ui.theme.AppColor
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -67,7 +69,8 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @ExperimentalComposeUiApi
 @Destination
 @Composable
-fun HomeScreen (navigator: DestinationsNavigator
+fun HomeScreen (
+//fun HomeScreen (navigator: DestinationsNavigator
 ) {
     val scrollState = rememberScrollState()
     Column(
@@ -108,8 +111,7 @@ fun HomeScreen (navigator: DestinationsNavigator
                     = Modifier.clickable { })
             }
         }
-        Spacer(modifier = Modifier.height(50.dp))
-
+        Spacer(modifier = Modifier.height(30.dp))
         Row(
             modifier = Modifier.fillMaxWidth()
                 .padding(start = 10.dp, end = 10.dp),
@@ -128,18 +130,17 @@ fun HomeScreen (navigator: DestinationsNavigator
             ) {
                 Text(
                     stringResource(R.string.telemedicine_consultation),
-                    fontWeight = FontWeight.Bold,
+                    fontWeight = FontWeight.Medium,
                     fontSize = 16.sp,
                     textAlign = TextAlign.Center,
-                    modifier = Modifier.padding(top = 90.dp)
-
+                    modifier = Modifier.padding(vertical = 50.dp)
                 )
             }
             Spacer(modifier = Modifier.width(10.dp))
             Surface(
                 modifier = Modifier.size(width = 180.dp, height = 140.dp)
                     .clickable {
-                        navigator.navigate(MedicationDestination)
+//                        navigator.navigate(MedicationDestination)
                     },
                 color = colorResource(R.color.green_app),
                 shape = RoundedCornerShape(20),
@@ -148,70 +149,69 @@ fun HomeScreen (navigator: DestinationsNavigator
             ) {
                 Text(
                     stringResource(R.string.medication),
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Medium,
+                    fontSize = 15.sp,
                     textAlign = TextAlign.Center,
-                    modifier = Modifier.padding(top = 70.dp)
-
+                    modifier = Modifier.padding(vertical = 50.dp)
                 )
             }
-            Spacer(modifier = Modifier.height(20.dp))
-            Row(
-                modifier = Modifier.fillMaxWidth()
-                    .padding(start = 10.dp, end = 10.dp),
-                verticalAlignment = Alignment.Top,
-                horizontalArrangement = Arrangement.Center
+        }
+        Spacer(modifier = Modifier.height(20.dp))
+        Row(
+            modifier = Modifier.fillMaxWidth()
+                .padding(start = 10.dp, end = 10.dp),
+            verticalAlignment = Alignment.Top,
+            horizontalArrangement = Arrangement.Center
+        ) {
+        Surface(
+                modifier = Modifier.size(width = 180.dp, height = 140.dp)
+                    .clickable {
+//                            navigator.navigate(MedicationDestination)
+                    },
+                color = colorResource(R.color.green_app),
+                shape = RoundedCornerShape(20),
+                contentColor = Color.Black,
+                elevation = 1.dp
             ) {
-                Surface(
-                    modifier = Modifier.size(width = 180.dp, height = 140.dp)
-                        .clickable {
-                            navigator.navigate(MedicationDestination)
-                        },
-                    color = colorResource(R.color.green_app),
-                    shape = RoundedCornerShape(20),
-                    contentColor = Color.Black,
-                    elevation = 1.dp
-                ) {
-                    Text(
-                        stringResource(R.string.health_tracking),
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 16.sp,
-                        textAlign = TextAlign.Center,
-                        modifier = Modifier.padding(top = 70.dp)
-                    )
-                }
-                Spacer(modifier = Modifier.width(10.dp))
-
-                Surface(
-                    modifier = Modifier.size(width = 180.dp, height = 140.dp)
-                        .clickable {
-                            navigator.navigate(HealthEducationDestination)
-                        },
-                    color = colorResource(R.color.green_app),
-                    shape = RoundedCornerShape(20),
-                    contentColor = Color.Black,
-                    elevation = 1.dp
-                ) {
-                    Text(
-                        stringResource(R.string.health_education_and_awareness),
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 16.sp,
-                        textAlign = TextAlign.Center,
-                        modifier = Modifier.padding(top = 70.dp)
-                    )
-                }
+                Text(
+                    stringResource(R.string.health_tracking),
+                    fontWeight = FontWeight.Medium,
+                    fontSize = 16.sp,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.padding(vertical = 50.dp)
+                )
             }
-            Spacer(modifier = Modifier.height(20.dp))
-            Row(
-                modifier = Modifier.fillMaxWidth()
-                    .padding(start = 10.dp, end = 10.dp),
-                verticalAlignment = Alignment.Top,
-                horizontalArrangement = Arrangement.Center
+            Spacer(modifier = Modifier.width(10.dp))
+            Surface(
+                modifier = Modifier.size(width = 180.dp, height = 140.dp)
+                    .clickable {
+//                            navigator.navigate(HealthEducationDestination)
+                    },
+                color = colorResource(R.color.green_app),
+                shape = RoundedCornerShape(20),
+                contentColor = Color.Black,
+                elevation = 1.dp
             ) {
+                Text(
+                    stringResource(R.string.health_education_and_awareness),
+                    fontWeight = FontWeight.Medium,
+                    fontSize = 16.sp,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.padding(vertical = 50.dp)
+                )
+            }
+        }
+        Spacer(modifier = Modifier.height(20.dp))
+        Row(
+            modifier = Modifier.fillMaxWidth()
+                .padding(start = 10.dp, end = 10.dp),
+            verticalAlignment = Alignment.Top,
+            horizontalArrangement = Arrangement.Center
+        ) {
                 Surface(
                     modifier = Modifier.size(width = 180.dp, height = 140.dp)
                         .clickable {
-                            navigator.navigate(PharmacyDestination)
+//                            navigator.navigate(PharmacyDestination)
                         },
                     color = colorResource(R.color.green_app),
                     shape = RoundedCornerShape(20),
@@ -220,13 +220,13 @@ fun HomeScreen (navigator: DestinationsNavigator
                 ) {
                     Text(
                         stringResource(R.string.pharmacy),
-                        fontWeight = FontWeight.Bold,
+                        fontWeight = FontWeight.Medium,
                         fontSize = 16.sp,
                         textAlign = TextAlign.Center,
-                        modifier = Modifier.padding(top = 70.dp)
+                        modifier = Modifier.padding(vertical = 50.dp)
                     )
                 }
-                Spacer(modifier = Modifier.width(10.dp))
+            Spacer(modifier = Modifier.width(10.dp))
                 Surface(
                     modifier = Modifier.size(width = 180.dp, height = 140.dp)
                         .clickable {
@@ -239,21 +239,20 @@ fun HomeScreen (navigator: DestinationsNavigator
                 ) {
                     Text(
                         stringResource(R.string.first_aid),
-                        fontWeight = FontWeight.Bold,
+                        fontWeight = FontWeight.Medium,
                         fontSize = 16.sp,
                         textAlign = TextAlign.Center,
-                        modifier = Modifier.padding(top = 70.dp)
-
+                        modifier = Modifier.padding(vertical = 50.dp)
                     )
                 }
             }
-            Spacer(modifier = Modifier.height(20.dp))
-            Row(
-                modifier = Modifier.fillMaxWidth()
-                    .padding(start = 10.dp, end = 10.dp),
-                verticalAlignment = Alignment.Top,
-                horizontalArrangement = Arrangement.Center
-            ) {
+        Spacer(modifier = Modifier.height(20.dp))
+        Row(
+            modifier = Modifier.fillMaxWidth()
+                .padding(start = 10.dp, end = 10.dp),
+            verticalAlignment = Alignment.Top,
+            horizontalArrangement = Arrangement.Center
+        ) {
                 Surface(
                     modifier = Modifier.size(width = 180.dp, height = 140.dp)
                         .clickable {
@@ -266,13 +265,13 @@ fun HomeScreen (navigator: DestinationsNavigator
                 ) {
                     Text(
                         stringResource(R.string.community),
-                        fontWeight = FontWeight.Bold,
+                        fontWeight = FontWeight.Medium,
                         fontSize = 16.sp,
                         textAlign = TextAlign.Center,
-                        modifier = Modifier.padding(top = 70.dp)
+                        modifier = Modifier.padding(vertical = 50.dp)
                     )
                 }
-                Spacer(modifier = Modifier.width(10.dp))
+            Spacer(modifier = Modifier.width(10.dp))
                 Surface(
                     modifier = Modifier.size(width = 180.dp, height = 140.dp)
                         .clickable {
@@ -285,13 +284,12 @@ fun HomeScreen (navigator: DestinationsNavigator
                 ) {
                     Text(
                         text = stringResource(R.string.emergency_assistant),
-                        fontWeight = FontWeight.Bold,
+                        fontWeight = FontWeight.Medium,
                         fontSize = 16.sp,
                         textAlign = TextAlign.Center,
-                        modifier = Modifier.padding(top = 70.dp)
+                        modifier = Modifier.padding(vertical = 60.dp)
                     )
                 }
             }
         }
     }
-}

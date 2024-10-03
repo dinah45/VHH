@@ -44,6 +44,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.vhh.R
 import com.example.vhh.ui.components.VhhButton
+import com.example.vhh.ui.components.VhhInputField
 import com.example.vhh.ui.destinations.HomeScreenDestination
 import com.example.vhh.ui.destinations.LoginDestination
 import com.example.vhh.ui.theme.AppColor
@@ -53,17 +54,34 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @ExperimentalComposeUiApi
 @Destination
 @Composable
-fun SignUp(navigator: DestinationsNavigator) {
+fun SignUp() {
+//fun SignUp(navigator: DestinationsNavigator) {
     var email by remember { mutableStateOf(TextFieldValue("")) }
     var phoneNumber by remember { mutableStateOf(TextFieldValue("")) }
     var gender by remember { mutableStateOf(TextFieldValue("")) }
     var region by remember { mutableStateOf(TextFieldValue("")) }
-    val keyboardController = LocalSoftwareKeyboardController.current
     val context = LocalContext.current
+    val keyboardController = LocalSoftwareKeyboardController.current
+//    var password by remember { mutableStateOf(TextFieldValue("")) }
+    var processing by remember {
+        mutableStateOf(false)
+    }
+    var isError by remember {
+        mutableStateOf(false)
+    }
+    var message by remember {
+        mutableStateOf("")
+    }
+    val emailRegex = Regex(pattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")
 
+    //to check if the email is valid
+    var isEmailValid by remember {
+        mutableStateOf(true)
+    }
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .padding(horizontal = 20.dp, vertical = 20.dp)
             .background(MaterialTheme.colorScheme.background),
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.Start
@@ -83,134 +101,89 @@ fun SignUp(navigator: DestinationsNavigator) {
             color = AppColor
         )
                     Spacer(modifier = Modifier.height(40.dp))
-
-            TextField(value = email, onValueChange = {email = it},
-                label = {
-                    androidx.compose.material3.Text(
-                        text = "Email",
-                        color = Color.Gray,
-                        style = androidx.compose.material.MaterialTheme.typography.caption
-                    )
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .size(50.dp)
-                    .padding(horizontal = 16.dp),
-                keyboardOptions = KeyboardOptions.Default.copy(
-                    imeAction = ImeAction.Done
-                ),
-//                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
-                        keyboardActions = KeyboardActions (onDone = {
-                            keyboardController?.hide()
-                }),
-                maxLines = 1,
-                colors = TextFieldDefaults.textFieldColors(
-                    backgroundColor = Color(0xFF888888).copy(0.3f),
-                    focusedIndicatorColor = AppColor,
-                    disabledIndicatorColor = Color(0xFF888888).copy(0.3f),
-                    cursorColor = AppColor,
-                    disabledLabelColor =  Color(0xFF888888).copy(0.3f),
-                    focusedLabelColor = AppColor,
-                ),
-                shape =  RoundedCornerShape(40)
+        VhhInputField(
+            value = email,
+            onValueChange = { email = it.copy(text = it.text.trim())},
+            placeholder = stringResource(id = R.string.email),
+            keyboardType = KeyboardType.Email,
+            isError = !isEmailValid)
+        if (!isEmailValid) {
+            Text(
+                text = "please_enter_a_valid_email",
+                style = MaterialTheme.typography.bodyLarge,
+                color = Color.Red
             )
+        }
+        //show error if email is not valid
+        if (isError) {
+            Text(
+                text = message,
+                style = MaterialTheme.typography.bodyLarge,
+                color = Color.Red
+            )
+        }
         Spacer(modifier = Modifier.height(10.dp))
-        TextField(value = phoneNumber, onValueChange = {phoneNumber = it},
-            label = {
-                androidx.compose.material3.Text(
-                    text = "Phone Number",
-                    color = Color.Gray,
-                    style = androidx.compose.material.MaterialTheme.typography.caption
-                )
+        VhhInputField(
+            value = phoneNumber,
+            onValueChange = {
+                isError = false
+                phoneNumber = it
             },
-            modifier = Modifier
-                .fillMaxWidth()
-                .size(50.dp)
-                .padding(horizontal = 16.dp),
-            keyboardOptions = KeyboardOptions.Default.copy(
-                imeAction = ImeAction.Done
-            ),
-//            keyboardType = KeyboardType.Number,
-                    keyboardActions = KeyboardActions (onDone = {
-                keyboardController?.hide()
-            }),
-            maxLines = 1,
-            colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = Color(0xFF888888).copy(0.3f),
-                focusedIndicatorColor = AppColor,
-                disabledIndicatorColor = Color(0xFF888888).copy(0.3f),
-                cursorColor = AppColor,
-                disabledLabelColor =  Color(0xFF888888).copy(0.3f),
-                focusedLabelColor = AppColor,
-            ),
-            shape =  RoundedCornerShape(40)
+            placeholder = stringResource(id = R.string.phone_number),
+            keyboardType = KeyboardType.Number,
+            isError = isError,
         )
+        //show error if email is not valid
+        if (isError) {
+            Text(
+                text = message,
+                style = MaterialTheme.typography.bodyLarge,
+                color = Color.Red
+            )
+        }
         Spacer(modifier = Modifier.height(10.dp))
-        TextField(value = gender, onValueChange = {gender = it},
-            label = {
-                androidx.compose.material3.Text(
-                    text = "Gender",
-                    color = Color.Gray,
-                    style = androidx.compose.material.MaterialTheme.typography.caption
-                )
+        VhhInputField(
+            value = gender,
+            onValueChange = {
+                isError = false
+                gender = it
             },
-            modifier = Modifier
-                .fillMaxWidth()
-                .size(50.dp)
-                .padding(horizontal = 16.dp),
-            keyboardOptions = KeyboardOptions.Default.copy(
-                imeAction = ImeAction.Done
-            ),
-//            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
-                    keyboardActions = KeyboardActions (onDone = {
-                        keyboardController?.hide()
-            }),
-            maxLines = 1,
-            colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = Color(0xFF888888).copy(0.3f),
-                focusedIndicatorColor = AppColor,
-                disabledIndicatorColor = Color(0xFF888888).copy(0.3f),
-                cursorColor = AppColor,
-                disabledLabelColor =  Color(0xFF888888).copy(0.3f),
-                focusedLabelColor = AppColor,
-            ),
-            shape =  RoundedCornerShape(40)
+            placeholder = stringResource(id = R.string.gender),
+            keyboardType = KeyboardType.Text,
+            isError = isError,
         )
+        //show error if email is not valid
+        if (isError) {
+            Text(
+                text = message,
+                style = MaterialTheme.typography.bodyLarge,
+                color = Color.Red
+            )
+        }
         Spacer(modifier = Modifier.height(10.dp))
-        TextField(value = region, onValueChange = {region = it},
-            label = {
-                androidx.compose.material3.Text(
-                    text = "Region",
-                    color = Color.Gray,
-                    style = androidx.compose.material.MaterialTheme.typography.caption
-                )
+        VhhInputField(
+            value = region,
+            onValueChange = {
+                isError = false
+                region = it
             },
-            modifier = Modifier
-                .fillMaxWidth()
-                .size(50.dp)
-                .padding(horizontal = 16.dp),
-            keyboardOptions = KeyboardOptions.Default.copy(
-                imeAction = ImeAction.Done
-            ),
-//                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
-            keyboardActions = KeyboardActions (onDone = {
-                keyboardController?.hide()
-            }),
-            maxLines = 1,
-            colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = Color(0xFF888888).copy(0.3f),
-                focusedIndicatorColor = AppColor,
-                disabledIndicatorColor = Color(0xFF888888).copy(0.3f),
-                cursorColor = AppColor,
-                disabledLabelColor =  Color(0xFF888888).copy(0.3f),
-                focusedLabelColor = AppColor,
-
-            ),
-            shape =  RoundedCornerShape(40)
+            placeholder = stringResource(id = R.string.region),
+            keyboardType = KeyboardType.Text,
+            isError = isError,
         )
-
+        //show error if email is not valid
+        if (isError) {
+            Text(
+                text = message,
+                style = MaterialTheme.typography.bodyLarge,
+                color = Color.Red
+            )
+        }
         Spacer(modifier = Modifier.height(50.dp))
         VhhButton(text = stringResource(id = R.string.sign_up)) {
+            isEmailValid = emailRegex.matches(input = email.text)
+            if (isEmailValid) {
+                processing = true}
             if (email.text.isEmpty()&&phoneNumber.text.isEmpty()&&gender.text.isEmpty()&&region
                 .text.isEmpty()){
                 Toast.makeText(context, "Please fill all the fields", Toast.LENGTH_SHORT).show()
@@ -223,7 +196,7 @@ fun SignUp(navigator: DestinationsNavigator) {
             }else if (region.text.isEmpty()){
                 Toast.makeText(context, "Please enter your region", Toast.LENGTH_SHORT).show()
             }else{
-                navigator.navigate(HomeScreenDestination)
+//                navigator.navigate(HomeScreenDestination)
             }
         }
         Spacer(modifier = Modifier.height(40.dp))
@@ -232,7 +205,6 @@ fun SignUp(navigator: DestinationsNavigator) {
             modifier = Modifier
                 .fillMaxWidth()
                 .size(35.dp)
-                .padding(horizontal = 16.dp)
                 .clickable { },
             shape = RoundedCornerShape(40),
             color = Color(0xFF888888).copy(0.3f),
@@ -260,7 +232,6 @@ Image(painter = painterResource(id = R.drawable.google), contentDescription = ""
             modifier = Modifier
                 .fillMaxWidth()
                 .size(35.dp)
-                .padding(horizontal = 16.dp)
                 .clickable { },
             shape = RoundedCornerShape(40),
             color = Color(0xFF888888).copy(0.3f),
@@ -289,7 +260,6 @@ Image(painter = painterResource(id = R.drawable.apple), contentDescription = "")
             modifier = Modifier
                 .fillMaxWidth()
                 .size(35.dp)
-                .padding(horizontal = 16.dp)
                 .clickable { },
             shape = RoundedCornerShape(40),
             color = Color(0xFF888888).copy(0.3f),
@@ -311,19 +281,6 @@ Image(imageVector = Icons.Default.Email, contentDescription = "")
                 )
             }
         }
-//        TextField(
-//            modifier = Modifier.fillMaxWidth().size(32.dp),
-//                    value = region,
-//            label = { Text(text = "Region") },
-//            onValueChange = { region = it },
-//            singLine = true,
-//            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
-//            shape = RoundedCornerShape(20),
-//            colors = TextFieldDefaults.textFieldColors(
-//                backgroundColor = Color.Gray,
-//                cursorColor = Color.Black
-//            )
-//        )
         Spacer(modifier = Modifier.height(50.dp))
         Row (modifier = Modifier.padding(start= 90.dp)){
             Text(
@@ -335,7 +292,7 @@ Image(imageVector = Icons.Default.Email, contentDescription = "")
                 fontSize = 13.sp,
                 color = AppColor,
                 modifier = Modifier.clickable {
-                    navigator.navigate(LoginDestination)
+//                    navigator.navigate(LoginDestination)
                 }
             )
         }
