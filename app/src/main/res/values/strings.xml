@@ -2,9 +2,27 @@
     <string name="app_name">VHH</string>
     <string name="lets_get_started">Lets get Started</string>
     <string name="or_login_with">Or login with</string>
+    <string name="profile">Profile</string>
+    <string name="notifications">Notifications</string>
     <string name="menu">Menu</string>
+    <string name="change">Change</string>
+    <string name="find_doctor">Find Doctor</string>
+    <string name="cart">Cart</string>
+    <string name="heart_spaecialty">Heart Specialty</string>
+    <string name="gynacologist">Gynacologist</string>
+    <string name="physiologist">Physiologist</string>
+    <string name="doctor_details">Doctor Details</string>
+    <string name="appointment">Appointment</string>
+    <string name="vitamin_c_d_and_selen">Vitamin C, D and Selen</string>
+    <string name="daily_dose">Daily Dose</string>
+    <string name="add_cart">Add Cart</string>
+    <string name="all">All</string>
+    <string name="heart_burn">Heart Burn</string>
+    <string name="vitamin">Vitamin</string>
+    <string name="pharmacy">Pharmacy</string>
     <string name="please_select_your_required_service">Please select your required service</string>
     <string name="login">Login</string>
+    <string name="water_sanitation_and_hygiene">Water Sanitation and Hygiene[WASH]</string>
     <string name="hello_there">Hello there,</string>
     <string name="hello">Hello,</string>
     <string name="email">Email</string>
@@ -19,12 +37,15 @@
     <string name="first_aid">First Aid</string>
     <string name="phone_number">Phone Number</string>
     <string name="region">Region</string>
+    <string name="water">Water</string>
+    <string name="sanitation">Sanitation</string>
+    <string name="hygiene">Hygiene</string>
     <string name="sign_up">Sign Up</string>
     <string name="welcome_to">Welcome</string>
     <string name="skip">Skip</string>
     <string name="community">Community Support and Networking </string>
     <string name="medication">Medication Management</string>
-    <string name="emergency_assistant">Emergency Assistant</string>
+    <string name="emergency_assistant">Emergency response</string>
     <string name="health_education_and_awareness">Health Education and Awareness</string>
     <string name="health_education">Health Education</string>
     <string name="awarness">Awareness</string>
@@ -33,7 +54,7 @@
     on common health issues, Preventive care and healthy lifestyle</string>
     <string name="track_your_health">Track Your Health metrics, such as blood pressure,
         blood sugar levels and your weight</string>
-    <string name="health_tracking">Health Tracking</string>
+    <string name="health_tracking">Health Tracking And Monitoring</string>
     <string name="telemedicine_consultation">Telemedicine Consultations</string>
     <string name="connect_with_qualified">Connect with qualified health care professionals to
         recieve medical advice and prescriptions</string>
