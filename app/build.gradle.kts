@@ -1,20 +1,24 @@
+@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.ksp)
-
+    alias(libs.plugins.serialization)
+    id("kotlin-parcelize")
+    id("com.google.gms.google-services")
+//    id("com.google.firebase.crashlytics")
 }
 
 android {
-    namespace = "com.example.vhh"
+    namespace = "com.vhh"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.vhh"
+        applicationId = "com.vhh"
         minSdk = 24
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 49
+        versionName = "1.06.6"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -23,6 +27,9 @@ android {
     }
 
     buildTypes {
+        debug {
+            isMinifyEnabled = false
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
@@ -40,9 +47,10 @@ android {
     }
     buildFeatures {
         compose = true
+        viewBinding = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.0"
     }
     packaging {
         resources {
@@ -52,23 +60,46 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.ui.viewbinding)
+    implementation(libs.shimmer)
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
+    implementation(libs.core.ktx)
+    implementation(libs.lifecycle.runtime.ktx)
+    implementation(libs.activity.compose)
+    implementation(platform("androidx.compose:compose-bom:2023.06.01"))
+    implementation(libs.compose.animation)
     implementation(libs.compose.material)
+    implementation(libs.ui)
+    implementation(libs.ui.graphics)
+    implementation(libs.ui.tooling.preview)
+    implementation(libs.material3)
+    implementation(libs.kotlin.stdlib.jdk7)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.material)
+//    implementation(libs.firebase.messaging)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.espresso.core)
+//    androidTestImplementation(platform(libs.compose.bom))
+    androidTestImplementation(libs.ui.test.junit4)
+    debugImplementation(libs.ui.tooling)
+    debugImplementation(libs.ui.test.manifest)
+
+    // Glide
+    implementation(libs.glide.compose)
+    //accompanist navigation animation\
+//    implementation(libs.accompanist.navigation.animation)
+
+    // Timber
+    implementation(libs.timber)
+
+    // dataStore
+    implementation(libs.datastore.preferences)
+
+    // Koin
+    implementation(libs.koin)
+    implementation(libs.koin.worker)
+
     // livedata
     implementation(libs.livedata)
     implementation(libs.livedata.runtime)
@@ -77,19 +108,97 @@ dependencies {
     implementation(libs.viewmodel.compose)
 
     // coil
-//    implementation(libs.coil.compose)
+    implementation(libs.coil.compose)
 
-//    // room
-//    implementation(libs.room)
-//    implementation(libs.room.ktx)
-//    ksp(libs.room.compiler)
+    // room
+    implementation(libs.room)
+    implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
 
     // kotlinx.serialization
-//    implementation(libs.serialization)
+    implementation(libs.serialization)
 
     //destination
     implementation(libs.accompanist.systemuicontroller)
     implementation(libs.destinations.core)
     ksp(libs.destinations.ksp)
     implementation(libs.accompanist.pager.indicator)
+
+    //Fuel-core
+    implementation(libs.fuel)
+
+    //Fuel-packages
+    implementation(libs.fuel.android)
+    implementation(libs.fuel.livedata)
+    implementation(libs.fuel.coroutines)
+    implementation(libs.fuel.kotlinx.serialization)
+
+    //gson type converter
+    implementation(libs.gson)
+
+    // file upload
+    implementation(libs.uploadservice)
+
+    //location
+    implementation(libs.play.services.location)
+
+    //navigation
+    implementation(libs.accompanist.navigation.material)
+
+    //video
+    implementation(libs.androidx.media3.exoplayer)
+    implementation(libs.androidx.media3.ui)
+    implementation(libs.androidx.media3.exoplayer.hls)
+
+    //coil
+    implementation(libs.coil.compose)
+    implementation(libs.coil.gif)
+
+    //collapsing toolbar
+    implementation(libs.toolbar.compose)
+
+    // Import the Firebase BoM
+//    implementation(platform(libs.firebase.bom))
+
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.crashlytics)
+
+
+    //file
+    implementation(libs.commons.io)
+
+    //permission
+    implementation(libs.accompanist.permissions)
+
+    //glide with shimmer effect
+    implementation(libs.landscapist.glide)
+
+    //socket.io
+    implementation("io.socket:socket.io-client:2.0.0") {
+        exclude("org.json", "json")
+    }
+//    implementation(libs.engine.io.client)
+
+    //shimmer
+    implementation(libs.accompanist.placeholder.material)
+
+    //admob
+    implementation(libs.play.services.ads)
+
+    //referrer
+    implementation(libs.installreferrer)
+
+    //google play core
+    implementation(libs.app.update)
+
+    // For Kotlin users, also import the Kotlin extensions library for Play In-App Update:
+    implementation(libs.app.update.ktx)
+
+    //appodeal sdk
+//    implementation(libs.sdk)
+
+
+    //for date time
+    implementation(libs.threetenabp)
+
 }
