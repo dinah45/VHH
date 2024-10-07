@@ -14,15 +14,11 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardActions
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Surface
-import androidx.compose.material.TextFieldDefaults
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.material.TextField
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -37,7 +33,6 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
@@ -54,8 +49,8 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @ExperimentalComposeUiApi
 @Destination
 @Composable
-fun SignUp() {
-//fun SignUp(navigator: DestinationsNavigator) {
+//fun SignUp() {
+fun SignUp(navigator: DestinationsNavigator) {
     var email by remember { mutableStateOf(TextFieldValue("")) }
     var phoneNumber by remember { mutableStateOf(TextFieldValue("")) }
     var gender by remember { mutableStateOf(TextFieldValue("")) }
@@ -196,7 +191,7 @@ fun SignUp() {
             }else if (region.text.isEmpty()){
                 Toast.makeText(context, "Please enter your region", Toast.LENGTH_SHORT).show()
             }else{
-//                navigator.navigate(HomeScreenDestination)
+                navigator.navigate(HomeScreenDestination)
             }
         }
         Spacer(modifier = Modifier.height(40.dp))
@@ -292,7 +287,7 @@ Image(imageVector = Icons.Default.Email, contentDescription = "")
                 fontSize = 13.sp,
                 color = AppColor,
                 modifier = Modifier.clickable {
-//                    navigator.navigate(LoginDestination)
+                    navigator.navigate(LoginDestination)
                 }
             )
         }

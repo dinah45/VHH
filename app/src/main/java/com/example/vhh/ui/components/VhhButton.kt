@@ -39,8 +39,7 @@ fun VhhButton(
             disabledContentColor = Color.White
         ),
         modifier = modifier
-            .fillMaxWidth()
-            .padding(start = 16.dp, end = 16.dp),
+            .fillMaxWidth(),
         shape = RoundedCornerShape(20.dp),
     ) {
         if (processing) {

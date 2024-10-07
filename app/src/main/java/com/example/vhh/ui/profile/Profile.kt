@@ -1,5 +1,4 @@
-package com.example.vhh.ui.telemedcine
-
+package com.example.vhh.ui.profile
 
 import android.widget.PopupMenu.OnDismissListener
 import android.widget.Space
@@ -7,7 +6,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -27,7 +25,6 @@ import androidx.compose.material.Card
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.Surface
-import androidx.compose.material.TabRow
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.KeyboardArrowRight
@@ -41,7 +38,6 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -61,15 +57,15 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @ExperimentalComposeUiApi
 @Destination
 @Composable
-fun Notifications (
-//   navigator: DestinationsNavigator
+fun Profile (
+   navigator: DestinationsNavigator
 ) {
     val scrollState = rememberScrollState()
     Column(
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(scrollState)
-            .background(color = MaterialTheme.colorScheme.background),
+            .background(color = Color.LightGray.copy(0.5f)),
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.Start
     ) {
@@ -77,15 +73,15 @@ fun Notifications (
             modifier = Modifier
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(bottomEnd = 40.dp, bottomStart = 40.dp))
-                .height(150.dp),
+                .height(250.dp),
             backgroundColor = AppColor
         ) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 24.dp, vertical = 24.dp),
+                    .padding(horizontal = 24.dp, vertical = 34.dp),
                 horizontalArrangement = Arrangement.Absolute.SpaceBetween,
-                verticalAlignment = Alignment.Bottom
+                verticalAlignment = Alignment.Top
             ) {
                 Image(painter = painterResource(id = R.drawable.arrow), contentDescription = "",
                     modifier = Modifier.clickable { })
@@ -99,257 +95,267 @@ fun Notifications (
                     = Modifier.clickable { })
             }
             Text(
-                text = stringResource(id = R.string.notifications),
+                text = stringResource(id = R.string.profile),
                 fontWeight = FontWeight.Medium,
                 fontSize = 25.sp,
                 color = Color.White,
                 textAlign = TextAlign.Center,
                 modifier = Modifier
-                    .padding(top = 100.dp)
+                    .padding(top = 70.dp)
             )
         }
+        Row(
+            modifier = Modifier.padding(start = 15.dp, end = 15.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Start
+        ) {
+            Surface(
+                modifier = Modifier.clickable { }.size(width = 170.dp, height = 120.dp),
+                shape = RoundedCornerShape(20),
+                color = Color.White.copy(0.7f),
+            ) {
+                Column(
 
-        Spacer(modifier = Modifier.height(20.dp))
-        Surface(
-            modifier = Modifier
-                .fillMaxWidth()
-                .size(50.dp)
-                .padding(horizontal = 16.dp)
-                .clickable { },
-            shape = RoundedCornerShape(40),
-            color = Color.LightGray.copy(0.5f),
-            contentColor = Color.Black){
-            Row(
-                modifier = Modifier.padding(start = 20.dp, end = 10.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Start
+                    modifier = Modifier,
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Image(painterResource(R.drawable.test), contentDescription = null)
+                    Text(
+                        "Test results", fontWeight = FontWeight.Medium,
+                        fontSize = 13.sp,
+                        color = Color.Black
+                    )
+                }
+            }
+            Spacer(modifier = Modifier.weight(1f))
+            Surface(
+                modifier = Modifier.clickable { }.size(width = 170.dp, height = 120.dp),
+                shape = RoundedCornerShape(20),
+                color = Color.White.copy(0.7f),
             ) {
-                Text(
-                    "Dr Sam messsaged you ",
-                    fontWeight = FontWeight.Normal,
-                    fontSize = 13.sp,
-                    color = AppColor
-                )
-                Spacer(modifier = Modifier.weight(1f))
-                Text(
-                    "3 min ago ",
-                    fontWeight = FontWeight.Normal,
-                    fontSize = 13.sp,
-                    color = AppColor
-                )
+                Column(
+
+                    modifier = Modifier,
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Image(painterResource(R.drawable.alarm), contentDescription = null)
+                    Text(
+                        "Medication Schedule", fontWeight = FontWeight.Medium,
+                        fontSize = 13.sp,
+                        color = Color.Black
+                    )
+                }
             }
         }
-        Spacer(modifier = Modifier.height(15.dp))
-        Surface(
-            modifier = Modifier
-                .fillMaxWidth()
-                .size(50.dp)
-                .padding(horizontal = 16.dp)
-                .clickable { },
-            shape = RoundedCornerShape(40),
-            color = Color.LightGray.copy(0.5f),
-            contentColor = Color.Black){
-            Row(
-                modifier = Modifier.padding(start = 20.dp, end = 10.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Start
+        Spacer(modifier = Modifier.height(10.dp))
+        Row(
+            modifier = Modifier.padding(start = 15.dp, end = 15.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Start
+        ) {
+            Surface(
+                modifier = Modifier.clickable { }.size(width = 170.dp, height = 120.dp),
+                shape = RoundedCornerShape(20),
+                color = Color.White.copy(0.7f),
             ) {
-                Text(
-                    "Dr Sam messsaged you ",
-                    fontWeight = FontWeight.Normal,
-                    fontSize = 13.sp,
-                    color = Color.Black
-                )
-                Spacer(modifier = Modifier.weight(1f))
-                Text(
-                    "3 min ago ",
-                    fontWeight = FontWeight.Normal,
-                    fontSize = 13.sp,
-                    color = Color.Black
-                )
+                Column(
+
+                    modifier = Modifier,
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Image(painterResource(R.drawable.tube), contentDescription = null)
+                    Text(
+                        "Prescription", fontWeight = FontWeight.Medium,
+                        fontSize = 13.sp,
+                        color = Color.Black
+                    )
+                }
+            }
+            Spacer(modifier = Modifier.weight(1f))
+            Surface(
+                modifier = Modifier.clickable { }.size(width = 170.dp, height = 120.dp),
+                shape = RoundedCornerShape(20),
+                color = Color.White.copy(0.7f),
+            ) {
+                Column(
+
+                    modifier = Modifier,
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Image(painterResource(R.drawable.table), contentDescription = null)
+                    Text(
+                        "Medical history", fontWeight = FontWeight.Medium,
+                        fontSize = 13.sp,
+                        color = Color.Black
+                    )
+                }
             }
         }
-        Spacer(modifier = Modifier.height(15.dp))
+Spacer(modifier = Modifier.height(15.dp))
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
-                .size(50.dp)
+                .size(32.dp)
                 .padding(horizontal = 16.dp)
                 .clickable { },
             shape = RoundedCornerShape(40),
-            color = Color.LightGray.copy(0.5f),
-            contentColor = Color.Black){
+            color = Color.White.copy(0.7f),
+            contentColor = Color.Black) {
             Row(
-                modifier = Modifier.padding(start = 20.dp, end = 10.dp),
+                modifier = Modifier.padding(start = 20.dp, end = 20.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Start
             ) {
                 Text(
-                    "Dr Sam messsaged you ",
+                    "Appointment history",
                     fontWeight = FontWeight.Normal,
                     fontSize = 13.sp,
                     color = Color.Black
                 )
                 Spacer(modifier = Modifier.weight(1f))
-                Text(
-                    "3 min ago ",
-                    fontWeight = FontWeight.Normal,
-                    fontSize = 13.sp,
-                    color = Color.Black
-                )
-            }
-        }
-        Spacer(modifier = Modifier.height(15.dp))
-        Surface(
-            modifier = Modifier
-                .fillMaxWidth()
-                .size(50.dp)
-                .padding(horizontal = 16.dp)
-                .clickable { },
-            shape = RoundedCornerShape(40),
-            color = Color.LightGray.copy(0.5f),
-            contentColor = Color.Black){
-            Row(
-                modifier = Modifier.padding(start = 20.dp, end = 10.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Start
-            ) {
-                Text(
-                    "Dr Sam messsaged you ",
-                    fontWeight = FontWeight.Normal,
-                    fontSize = 13.sp,
-                    color = Color.Black
-                )
-                Spacer(modifier = Modifier.weight(1f))
-                Text(
-                    "3 min ago ",
-                    fontWeight = FontWeight.Normal,
-                    fontSize = 13.sp,
-                    color = Color.Black
-                )
-            }
-        }
-        Spacer(modifier = Modifier.height(15.dp))
-        Surface(
-            modifier = Modifier
-                .fillMaxWidth()
-                .size(50.dp)
-                .padding(horizontal = 16.dp)
-                .clickable { },
-            shape = RoundedCornerShape(40),
-            color = Color.LightGray.copy(0.5f),
-            contentColor = Color.Black){
-            Row(
-                modifier = Modifier.padding(start = 20.dp, end = 10.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Start
-            ) {
-                Text(
-                    "Dr Sam messsaged you ",
-                    fontWeight = FontWeight.Normal,
-                    fontSize = 13.sp,
-                    color = Color.Black
-                )
-                Spacer(modifier = Modifier.weight(1f))
-                Text(
-                    "3 min ago ",
-                    fontWeight = FontWeight.Normal,
-                    fontSize = 13.sp,
-                    color = Color.Black
-                )
-            }
-        }
-        Spacer(modifier = Modifier.height(15.dp))
-        Surface(
-            modifier = Modifier
-                .fillMaxWidth()
-                .size(50.dp)
-                .padding(horizontal = 16.dp)
-                .clickable { },
-            shape = RoundedCornerShape(40),
-            color = Color.LightGray.copy(0.5f),
-            contentColor = Color.Black){
-            Row(
-                modifier = Modifier.padding(start = 20.dp, end = 10.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Start
-            ) {
-                Text(
-                    "Dr Sam messsaged you ",
-                    fontWeight = FontWeight.Normal,
-                    fontSize = 13.sp,
-                    color = Color.Black
-                )
-                Spacer(modifier = Modifier.weight(1f))
-                Text(
-                    "3 min ago ",
-                    fontWeight = FontWeight.Normal,
-                    fontSize = 13.sp,
-                    color = Color.Black
-                )
-            }
-        }
-        Spacer(modifier = Modifier.height(15.dp))
-        Surface(
-            modifier = Modifier
-                .fillMaxWidth()
-                .size(50.dp)
-                .padding(horizontal = 16.dp)
-                .clickable { },
-            shape = RoundedCornerShape(40),
-            color = Color.LightGray.copy(0.5f),
-            contentColor = Color.Black){
-            Row(
-                modifier = Modifier.padding(start = 20.dp, end = 10.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Start
-            ) {
-                Text(
-                    "Dr Sam messsaged you ",
-                    fontWeight = FontWeight.Normal,
-                    fontSize = 13.sp,
-                    color = Color.Black
-                )
-                Spacer(modifier = Modifier.weight(1f))
-                Text(
-                    "3 min ago ",
-                    fontWeight = FontWeight.Normal,
-                    fontSize = 13.sp,
-                    color = Color.Black
-                )
-            }
-        }
-        Spacer(modifier = Modifier.height(15.dp))
-        Surface(
-            modifier = Modifier
-                .fillMaxWidth()
-                .size(50.dp)
-                .padding(horizontal = 16.dp)
-                .clickable { },
-            shape = RoundedCornerShape(40),
-            color = Color.LightGray.copy(0.5f),
-            contentColor = Color.Black){
-            Row(
-                modifier = Modifier.padding(start = 20.dp, end = 10.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Start
-            ) {
-                Text(
-                    "Dr Sam messsaged you ",
-                    fontWeight = FontWeight.Normal,
-                    fontSize = 13.sp,
-                    color = Color.Black
-                )
-                Spacer(modifier = Modifier.weight(1f))
-                Text(
-                    "3 min ago ",
-                    fontWeight = FontWeight.Normal,
-                    fontSize = 13.sp,
-                    color = Color.Black
-                )
+                Icon(Icons.Default.KeyboardArrowRight, contentDescription = null)
             }
         }
 
+Spacer(modifier = Modifier.height(10.dp))
+        Surface(
+            modifier = Modifier
+                .fillMaxWidth()
+                .size(32.dp)
+                .padding(horizontal = 16.dp)
+                .clickable { },
+            shape = RoundedCornerShape(40),
+            color = Color.White.copy(0.7f),
+            contentColor = Color.Black){
+            Row(
+                modifier = Modifier.padding(start = 20.dp, end = 20.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Start
+            ) {
+                Text(
+                    "Favourites ",
+                    fontWeight = FontWeight.Normal,
+                    fontSize = 13.sp,
+                    color = Color.Black
+                )
+                Spacer(modifier = Modifier.weight(1f))
+                Icon(Icons.Default.KeyboardArrowRight, contentDescription = null)
+            }
+        }
 
+Spacer(modifier = Modifier.height(10.dp))
+        Surface(
+            modifier = Modifier
+                .fillMaxWidth()
+                .size(32.dp)
+                .padding(horizontal = 16.dp)
+                .clickable { },
+            shape = RoundedCornerShape(40),
+            color = Color.White.copy(0.7f),
+            contentColor = Color.Black){
+            Row(
+                modifier = Modifier.padding(start = 20.dp, end = 20.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Start
+            ) {
+                Text(
+                    "Payment Info ",
+                    fontWeight = FontWeight.Normal,
+                    fontSize = 13.sp,
+                    color = Color.Black
+                )
+                Spacer(modifier = Modifier.weight(1f))
+                Icon(Icons.Default.KeyboardArrowRight, contentDescription = null)
+            }
+        }
+
+Spacer(modifier = Modifier.height(10.dp))
+        Surface(
+            modifier = Modifier
+                .fillMaxWidth()
+                .size(32.dp)
+                .padding(horizontal = 16.dp)
+                .clickable { },
+            shape = RoundedCornerShape(40),
+            color = Color.White.copy(0.7f),
+            contentColor = Color.Black){
+            Row(
+                modifier = Modifier.padding(start = 20.dp, end = 20.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Start
+            ) {
+                Text(
+                    "Settings ",
+                    fontWeight = FontWeight.Normal,
+                    fontSize = 13.sp,
+                    color = Color.Black
+                )
+                Spacer(modifier = Modifier.weight(1f))
+                Icon(Icons.Default.KeyboardArrowRight, contentDescription = null)
+            }
+        }
+
+Spacer(modifier = Modifier.height(10.dp))
+        Surface(
+            modifier = Modifier
+                .fillMaxWidth()
+                .size(32.dp)
+                .padding(horizontal = 16.dp)
+                .clickable { },
+            shape = RoundedCornerShape(40),
+            color = Color.White.copy(0.7f),
+            contentColor = Color.Black){
+            Row(
+                modifier = Modifier.padding(start = 20.dp, end = 20.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Start
+            ) {
+                Text(
+                    "Notification ",
+                    fontWeight = FontWeight.Normal,
+                    fontSize = 13.sp,
+                    color = Color.Black
+                )
+                Spacer(modifier = Modifier.weight(1f))
+                Icon(Icons.Default.KeyboardArrowRight, contentDescription = null)
+            }
+        }
+Spacer(modifier = Modifier.height(10.dp))
+        Surface(
+            modifier = Modifier
+                .fillMaxWidth()
+                .size(32.dp)
+                .padding(horizontal = 16.dp)
+                .clickable { },
+            shape = RoundedCornerShape(40),
+            color = Color.White.copy(0.7f),
+            contentColor = Color.Black){
+            Row(
+                modifier = Modifier.padding(start = 20.dp, end = 20.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Start
+            ) {
+                Text(
+                    "Support ",
+                    fontWeight = FontWeight.Normal,
+                    fontSize = 13.sp,
+                    color = Color.Black
+                )
+                Spacer(modifier = Modifier.weight(1f))
+                Icon(Icons.Default.KeyboardArrowRight, contentDescription = null)
+            }
+        }
+        Text(
+            "Log Out ",
+            fontWeight = FontWeight.Normal,
+            fontSize = 18.sp,
+            color = AppColor,
+            modifier = Modifier.padding(start = 15.dp)
+        )
+        }
     }
-}
+

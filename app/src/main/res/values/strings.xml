@@ -1,10 +1,25 @@
 <resources>
     <string name="app_name">VHH</string>
+    <string name="vhh_logo">VHH Logo</string>
     <string name="lets_get_started">Lets get Started</string>
     <string name="or_login_with">Or login with</string>
     <string name="profile">Profile</string>
+    <string name="new_device_detected">New Device Detected</string>
+    <string name="otp_verification">OTP Verification</string>
+    <string name="kindly_enter_the_verification_code_sent_to_your_email">Kindly enter the verification code sent to your email</string>
+    <string name="to_register_device">To register device</string>
+    <string name="no_notifications">No Notifications</string>
     <string name="notifications">Notifications</string>
     <string name="menu">Menu</string>
+    <string name="did_not_get_code">Did not get the code?</string>
+    <string name="resend_code">Resend Code</string>
+    <string name="confirm_new_password">Confirm New Password</string>
+    <string name="reset_password_message">Reset Password message</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="new_password_">New Password</string>
+    <string name="please_enter_a_valid_email">Please enter a valid email</string>
+    <string name="forget_password">Forgot Password</string>
+    <string name="no_worries">No worries</string>
     <string name="home">Home</string>
     <string name="booking">Booking</string>
     <string name="chat">Chat</string>

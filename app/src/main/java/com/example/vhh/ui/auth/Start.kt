@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -27,14 +28,17 @@ import com.example.vhh.ui.destinations.SignUpDestination
 import com.example.vhh.ui.theme.AppColor
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+//import com.vhh.R
 
 @ExperimentalComposeUiApi
 @Destination
 @Composable
+//fun Start(){
 fun Start(navigator: DestinationsNavigator){
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .padding(start = 16.dp, end = 16.dp)
             .background(color = MaterialTheme.colorScheme.background),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally

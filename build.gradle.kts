@@ -1,4 +1,3 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     dependencies {
         classpath("com.google.gms:google-services:4.4.1")
@@ -11,6 +10,6 @@ plugins {
     alias(libs.plugins.kotlinAndroid) apply false
     alias(libs.plugins.androidLibrary) apply false
     alias(libs.plugins.googleServices) apply false
-//    alias(libs.plugins.firebaseCrashlytics) apply false
+    alias(libs.plugins.firebaseCrashlytics) apply false
 }
 true // Needed to make the Suppress annotation work for the plugins block

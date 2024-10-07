@@ -10,30 +10,14 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.pager.PagerState
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavController
-import androidx.navigation.Navigator
 import com.example.vhh.ui.NavGraphs
-import com.example.vhh.ui.auth.Login
-import com.example.vhh.ui.auth.SignUp
-import com.example.vhh.ui.components.PageTab
-import com.example.vhh.ui.navigation.BottomNavScreen
-import com.example.vhh.ui.screen.HomeScreen
-import com.example.vhh.ui.telemedcine.Appointment
-import com.example.vhh.ui.telemedcine.Booking
-import com.example.vhh.ui.telemedcine.Details
-import com.example.vhh.ui.telemedcine.Notifications
-import com.example.vhh.ui.telemedcine.Profile
-import com.example.vhh.ui.telemedcine.Video
-import com.example.vhh.ui.telemedcine.Video1
 import com.example.vhh.ui.theme.VHHTheme
 import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
 import com.ramcosta.composedestinations.DestinationsNavHost
 import com.ramcosta.composedestinations.animations.rememberAnimatedNavHostEngine
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 
 @ExperimentalComposeUiApi
@@ -48,11 +32,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             VHHTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) {
-                    HomeScreen(
+                    DestinationsNavHost(navGraph = NavGraphs.root,
+                        engine = rememberAnimatedNavHostEngine()
                     )
-//                    DestinationsNavHost(navGraph = NavGraphs.root,
-//                        engine = rememberAnimatedNavHostEngine()
-//                    )
                 }
             }
         }

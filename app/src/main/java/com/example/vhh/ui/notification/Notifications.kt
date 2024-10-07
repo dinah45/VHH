@@ -1,4 +1,4 @@
-package com.example.vhh.ui.telemedcine
+package com.example.vhh.ui.notification
 
 
 import android.widget.PopupMenu.OnDismissListener
@@ -17,6 +17,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -36,12 +38,16 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -53,17 +59,29 @@ import com.example.vhh.R
 import com.example.vhh.ui.components.Custom
 import com.example.vhh.ui.components.VhhButton
 import com.example.vhh.ui.components.VhhButton1
+import com.example.vhh.ui.networkModels.NotificationResponse
 import com.example.vhh.ui.theme.AppColor
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalMaterialApi::class)
 @ExperimentalComposeUiApi
 @Destination
 @Composable
-fun Chat (
-   navigator: DestinationsNavigator
-) {
+fun Notification(navigator: DestinationsNavigator) {
+    val viewModel: NotificationViewModel = koinViewModel()
+    val notifications = viewModel.notifications.observeAsState(NotificationResponse()).value
+    val noti = remember {
+        mutableStateListOf<Notification>()
+    }
+    val showTip = viewModel.isNotificationTipShown.collectAsState(true).value
+
+    LaunchedEffect(key1 = notifications.data) {
+        noti.addAll(notifications?.data?.filterNot { res ->
+            noti.any { it.id == res.id }
+        } ?: emptyList())
+    }
     val scrollState = rememberScrollState()
     Column(
         modifier = Modifier
@@ -108,5 +126,42 @@ fun Chat (
                     .padding(top = 100.dp)
             )
         }
+
+        if (noti.isEmpty()) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+                    .background(colorResource(R.color.green_app), RoundedCornerShape(12.dp))
+                    .clip(RoundedCornerShape(12.dp))
+                    .height(70.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = stringResource(id = R.string.no_notifications),
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = Color.Black,
+                    fontWeight = FontWeight.SemiBold
+                )
+            }
+        }
+        LazyColumn (
+            state = rememberLazyListState()
+        ) {
+            items(items = noti, key = { it.id }) { notification ->
+                val index = noti.indexOf(notification)
+                if (index > noti.lastIndex - 2 && notifications.data.isNotEmpty()) {
+                    viewModel.getNotifications(
+                        notifications.meta.nextPage,
+                        notifications.meta.pageSize
+                    )
+                }
+        NotificationItem(notification, isBackground = false, navigator = navigator)
+//                    })
+                Spacer(modifier = Modifier.height(8.dp))
+            }
+
+        }
     }
-}
+
+      }

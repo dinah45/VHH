@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "895104029178",
+    "project_id": "virtual-health-hub-c0797",
+    "storage_bucket": "virtual-health-hub-c0797.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:895104029178:android:ef14511dbc0f1e805dd443",
+        "android_client_info": {
+          "package_name": "com.example.vhh"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqJGkwXGSQENVlfFEXB13BdlMb053bL-o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

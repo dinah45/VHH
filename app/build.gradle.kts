@@ -6,15 +6,15 @@ plugins {
     alias(libs.plugins.serialization)
     id("kotlin-parcelize")
     id("com.google.gms.google-services")
-//    id("com.google.firebase.crashlytics")
+    id("com.google.firebase.crashlytics")
 }
 
 android {
-    namespace = "com.vhh"
+    namespace = "com.example.vhh"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.vhh"
+        applicationId = "com.example.vhh"
         minSdk = 24
         targetSdk = 34
         versionCode = 49
@@ -76,7 +76,8 @@ dependencies {
     implementation(libs.kotlin.stdlib.jdk7)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.material)
-//    implementation(libs.firebase.messaging)
+    implementation(libs.firebase.messaging)
+    implementation(libs.firebase.firestore.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -158,7 +159,7 @@ dependencies {
     implementation(libs.toolbar.compose)
 
     // Import the Firebase BoM
-//    implementation(platform(libs.firebase.bom))
+    implementation(platform(libs.firebase.bom))
 
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.crashlytics)

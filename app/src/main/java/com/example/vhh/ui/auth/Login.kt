@@ -56,8 +56,8 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @ExperimentalComposeUiApi
 @Destination
 @Composable
-fun Login() {
-//fun Login(navigator: DestinationsNavigator) {
+//fun Login() {
+fun Login(navigator: DestinationsNavigator) {
     val context = LocalContext.current
     val keyboardController = LocalSoftwareKeyboardController.current
     var email by remember { mutableStateOf(TextFieldValue("")) }
@@ -151,7 +151,7 @@ style = MaterialTheme.typography.headlineLarge,
             }else if (email.text.isEmpty() || password.text.isEmpty()) {
                 Toast.makeText(context, "Please enter your email and password", Toast.LENGTH_SHORT).show()
             }else {
-//                navigator.navigate(HomeScreenDestination)
+                navigator.navigate(HomeScreenDestination)
             }
         }
         Spacer(modifier = Modifier.height(50.dp))
@@ -271,7 +271,7 @@ style = MaterialTheme.typography.headlineLarge,
                 color = AppColor,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.clickable {
-//                    navigator.navigate(SignUpDestination)
+                    navigator.navigate(SignUpDestination)
                 }
             )
         }
