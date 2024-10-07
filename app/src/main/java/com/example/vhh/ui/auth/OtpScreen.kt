@@ -42,8 +42,12 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.ramcosta.composedestinations.navigation.popUpTo
 import kotlinx.coroutines.delay
 import org.koin.androidx.compose.koinViewModel
+import com.example.vhh.ui.auth.AuthViewModel
+import com.example.vhh.ui.destinations.OtpScreenDestination
+import com.example.vhh.ui.destinations.ResetPasswordDestination
+import com.example.vhh.ui.destinations.Res
 
-@OptIn(ExperimentalComposeUiApi::class)
+@ExperimentalComposeUiApi
 @Destination
 @Composable
 fun OtpScreen(

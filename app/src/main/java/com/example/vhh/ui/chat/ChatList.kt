@@ -172,14 +172,14 @@ fun ChatList(navigator: DestinationsNavigator) {
                 ) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Icon(
-                            painter = painterResource(id = R.drawable.chat),
+                            painter = painterResource(id = R.drawable.sms),
                             contentDescription = stringResource(id = R.string.chat),
                             modifier = Modifier.size(150.dp),
                             tint = Color.Black.copy(0.5f)
                         )
                         Spacer(modifier = Modifier.height(10.dp))
                         Text(
-                            text = stringResource(id = R.string.no_chats),
+                            text = "No Chats",
                             style = MaterialTheme.typography.bodyLarge,
                             color = Color.Black,
                             textAlign = TextAlign.Center,

@@ -38,7 +38,7 @@ import org.koin.androidx.compose.koinViewModel
 import timber.log.Timber
 
 
-@OptIn(ExperimentalComposeUiApi::class)
+@ExperimentalComposeUiApi
 @Destination
 @Composable
 fun ResetPassword(email: String, navigator: DestinationsNavigator) {

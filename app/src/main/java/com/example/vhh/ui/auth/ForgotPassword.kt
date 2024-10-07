@@ -23,6 +23,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -36,6 +37,8 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import org.koin.androidx.compose.koinViewModel
 import timber.log.Timber
 
+
+@ExperimentalComposeUiApi
 @Destination
 @Composable
 fun ForgetPassword(mail: String, navigator: DestinationsNavigator) {
@@ -129,10 +132,12 @@ fun ForgetPassword(mail: String, navigator: DestinationsNavigator) {
                     ).show()
                     //    navigate to otp screen
                     navigator.navigate(
-//                        OtpScr(
-                            email = email.text,
-                            isNewDevice = false
-                        )
+                        Otp
+
+//                        (
+//                            email = email.text,
+//                            isNewDevice = false
+//                        )
                     )
                 }.addOnFailureListener { exception ->
                     //  show toast

@@ -10,6 +10,9 @@ import android.location.Address
 import android.location.Location
 import android.location.LocationManager
 import androidx.core.app.ActivityCompat
+import com.example.vhh.ui.utill.locationModels.LocationResult
+import com.example.vhh.ui.utill.locationModels.Place
+import com.example.vhh.ui.utill.locationModels.SearchResults
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine

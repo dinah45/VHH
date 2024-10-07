@@ -9,7 +9,7 @@ import com.example.vhh.ui.datastore.Settings
 import com.example.vhh.ui.datastore.SettingsConstants
 import com.example.vhh.ui.utill.Endpoints
 import com.example.vhh.ui.utill.NetworkCalls
-import com.google.firebase.firestore.auth.User
+import com.example.vhh.ui.utill.locationModels.LocationResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent

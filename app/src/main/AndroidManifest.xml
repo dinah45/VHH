@@ -61,7 +61,7 @@
             android:value="ca-app-pub-8613748949810587~5868705431" />
 
 <!--        <service-->
-<!--&lt;!&ndash;            android:name=".ui.screens.notification.NotificationService"&ndash;&gt;-->
+<!--            android:name=".ui.screens.notification.NotificationService"-->
 <!--            android:enabled="true"-->
 <!--            android:exported="true"-->
 <!--            android:permission="com.google.android.c2dm.permission.SEND">-->
@@ -71,14 +71,14 @@
 <!--            </intent-filter>-->
 <!--        </service>-->
 
-<!--        <meta-data-->
-<!--&lt;!&ndash;            android:name="com.google.firebase.messaging.default_notification_icon"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:resource="@drawable/ic_stat_name" />&ndash;&gt;-->
-<!--        &lt;!&ndash; Set color used with incoming notification messages. This is used when no color is set for the incoming-->
-<!--             notification message. See README(https://goo.gl/6BKBk7) for more. &ndash;&gt;-->
-<!--        <meta-data-->
-<!--            android:name="com.google.firebase.messaging.default_notification_color"-->
-<!--            android:resource="@color/primary" />-->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/image43" />
+        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/green_app" />
 
 
         <meta-data

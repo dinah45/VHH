@@ -1,7 +1,5 @@
 package com.example.vhh
 
-//import com.example.vhh.ui.screen.Welcome
-//import com.example.vhh.ui.screens.NavGraphs
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity

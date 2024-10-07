@@ -262,7 +262,7 @@ fun Chat(
                             Row {
                                 IconButton(onClick = { navigator.popBackStack() }) {
                                     Image(
-                                        painter = painterResource(id = R.drawable.arrow_back),
+                                        painter = painterResource(id = R.drawable.arrow),
                                         contentDescription = "Back",
                                         contentScale = ContentScale.FillWidth,
                                         modifier = Modifier.width(24.dp)
@@ -296,7 +296,7 @@ fun Chat(
                                 Spacer(modifier = Modifier.width(8.dp))
                                 Column {
                                     Text(
-                                        text = conver?.display?.name ?: "Cakkie Support",
+                                        text = conver?.display?.name ?: "Vhh Support",
                                         color = Color.Black,
                                         style = MaterialTheme.typography.bodyLarge,
                                         fontWeight = FontWeight.Bold
