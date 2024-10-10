@@ -4,7 +4,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import com.cakkie.networkModels.Conversation
+import com.cakkie.networkModels.ConversationResponse
+import com.example.vhh.ui.data.db.models.User
 import com.example.vhh.ui.data.respositories.UserRepository
+import com.example.vhh.ui.networkModels.Proposal
+import com.example.vhh.ui.socket.SocketClient
+import com.example.vhh.ui.utill.Endpoints
+import com.example.vhh.ui.utill.NetworkCalls
 import kotlinx.coroutines.launch
 import org.json.JSONObject
 import org.koin.core.component.KoinComponent

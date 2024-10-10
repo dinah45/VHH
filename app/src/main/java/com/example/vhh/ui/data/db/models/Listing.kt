@@ -6,6 +6,7 @@ import androidx.compose.runtime.Stable
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.vhh.ui.networkModels.Comment
 import com.example.vhh.ui.networkModels.CurrencyRate
 import com.example.vhh.ui.networkModels.Meta
 import com.example.vhh.ui.networkModels.Pagination

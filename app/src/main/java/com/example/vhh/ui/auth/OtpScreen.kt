@@ -1,9 +1,6 @@
 package com.example.vhh.ui.auth
 
-import androidx.compose.ui.graphics.Color
-import com.example.vhh.R
-import com.example.vhh.ui.components.VhhButton
-import com.example.vhh.ui.theme.AppColor
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -28,24 +25,26 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.example.vhh.R
 import com.example.vhh.ui.NavGraphs
+import com.example.vhh.ui.components.VhhButton
 import com.example.vhh.ui.destinations.HomeScreenDestination
+import com.example.vhh.ui.destinations.OtpScreenDestination
+import com.example.vhh.ui.destinations.ResetPasswordDestination
+import com.example.vhh.ui.theme.AppColor
 import com.example.vhh.ui.utill.Toaster
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.ramcosta.composedestinations.navigation.popUpTo
 import kotlinx.coroutines.delay
 import org.koin.androidx.compose.koinViewModel
-import com.example.vhh.ui.auth.AuthViewModel
-import com.example.vhh.ui.destinations.OtpScreenDestination
-import com.example.vhh.ui.destinations.ResetPasswordDestination
-import com.example.vhh.ui.destinations.Res
 
 @ExperimentalComposeUiApi
 @Destination
@@ -106,11 +105,11 @@ fun OtpScreen(
             contentDescription = "Cakkie Logo",
             modifier = Modifier
                 .padding(bottom = 30.dp)
-                .size(160.dp)
+                .size(250.dp)
                 .align(CenterHorizontally)
         )
 
-        Spacer(modifier = Modifier.height(30.dp))
+        Spacer(modifier = Modifier.height(50.dp))
         Text(
             text = stringResource(
                 id = if (isNewDevice) R.string.new_device_detected else R.string.otp_verification
@@ -118,7 +117,7 @@ fun OtpScreen(
         )
         Text(
             text = stringResource(
-                id = R.string.kindly_enter_the_verification_code_sent_to_your_email, email
+                id = R.string.kindly_enter_the_verification_code_sent_to_your_email,
             ) + if (isNewDevice) " " + stringResource(id = R.string.to_register_device) else "",
             style = MaterialTheme.typography.bodyLarge
         )
@@ -136,13 +135,15 @@ fun OtpScreen(
                 color = Color.Red
             )
         }
-        Spacer(modifier = Modifier.weight(0.3f))
-        VhhButton (
+        Spacer(modifier = Modifier.height(50.dp))
+        VhhButton(
             Modifier.fillMaxWidth(),
             processing = processing,
             text = "Continue",
             enabled = otp.text.length == 4
         ) {
+            navigator.navigate(ResetPasswordDestination(email))
+
             processing = true
             viewModel.verifyOtp(email, otp.text)
                 .addOnSuccessListener {
@@ -175,7 +176,7 @@ fun OtpScreen(
                         }
 
                         isSavedChanges -> {
-                            navigator.navigate(Res(email)) {
+                            navigator.navigate(ResetPasswordDestination(email)) {
                             }
                         }
 
@@ -239,5 +240,7 @@ fun OtpScreen(
                     }
                 })
 
+        }
     }
-}
+
+

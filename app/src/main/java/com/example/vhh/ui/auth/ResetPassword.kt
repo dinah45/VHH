@@ -15,6 +15,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -32,6 +35,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import com.example.vhh.ui.destinations.LoginDestination
+import com.example.vhh.ui.destinations.ResetPasswordDestination
+//import com.example.vhh.ui.utill.Toaster
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import org.koin.androidx.compose.koinViewModel
@@ -41,8 +46,10 @@ import timber.log.Timber
 @ExperimentalComposeUiApi
 @Destination
 @Composable
-fun ResetPassword(email: String, navigator: DestinationsNavigator) {
-    val viewModel: AuthViewModel = koinViewModel()
+fun ResetPassword(email: String,
+                  navigator: DestinationsNavigator
+) {
+//    val viewModel: AuthViewModel = koinViewModel()
     var password by remember {
         mutableStateOf(TextFieldValue(""))
     }
@@ -71,24 +78,24 @@ fun ResetPassword(email: String, navigator: DestinationsNavigator) {
             contentAlignment = Alignment.Center,
             modifier = Modifier.fillMaxWidth()
         ) {
-
-            Image(
-                painter = painterResource(id = R.drawable.arrow),
+Icon(Icons.Default.ArrowBack,
+//            Image(
+//                painter = painterResource(id = R.drawable.arrow),
                 contentDescription = "Arrow Back",
 
                 modifier = Modifier
                     .clickable {
-                        navigator.popBackStack()
+//                        navigator.popBackStack()
                     }
                     .align(Alignment.TopStart)
                     .size(24.dp)
             )
             Image(
                 painter = painterResource(id = R.drawable.logo),
-                contentDescription = "Cakkie Logo",
+                contentDescription = "vhh Logo",
                 modifier = Modifier
                     .padding(bottom = 52.dp)
-                    .size(67.dp)
+                    .size(200.dp)
                     .align(Alignment.Center)
             )
         }
@@ -127,50 +134,52 @@ fun ResetPassword(email: String, navigator: DestinationsNavigator) {
             Spacer(modifier = Modifier.height(150.dp))
 
 
-            VhhButton (
+            VhhButton(
                 Modifier.fillMaxWidth(),
                 processing = processing,
                 enabled = canProceed,
                 text = "Continue"
             ) {
-                viewModel.resetPassword(
-                    password = password.text,
-                    passwordConfirmation = confirmPassword.text
-                ).addOnSuccessListener { response ->
-                    processing = false
-                    viewModel.removeToken()
-                    //  show toast
-                    Toaster(
-                        context = context,
-                        message = response.message,
-                        image = R.drawable.logo
-                    ).show()
-                    //    navigate to login screen
-                    navigator.navigate(
-                        LoginDestination(
-                            email = email,
-                        )
-                    ) {
-                        launchSingleTop = true
-                        popUpTo(ResetPasswordDestination.route) {
-                            inclusive = true
-                        }
-                    }
-                }.addOnFailureListener { exception ->
-                    //  show toast
-                    Toaster(
-                        context = context,
-                        message = exception,
-                        image = R.drawable.logo
-                    ).show()
-                    processing = false
-                    Timber.d(exception)
-                }
+                navigator.navigate(LoginDestination(email))
+//                viewModel.resetPassword(
+//                    password = password.text,
+//                    passwordConfirmation = confirmPassword.text
+//                ).addOnSuccessListener { response ->
+//                    processing = false
+//                    viewModel.removeToken()
+//                    //  show toast
+//                    Toaster(
+//                        context = context,
+//                        message = response.message,
+//                        image = R.drawable.logo
+//                    ).show()
+//                    //    navigate to login screen
+//                    navigator.navigate(
+//                        LoginDestination(
+//                            email = email,
+//                        )
+//                    ) {
+//                        launchSingleTop = true
+//                        popUpTo(ResetPasswordDestination.route) {
+//                            inclusive = true
+//                        }
+//                    }
+//                }.addOnFailureListener { exception ->
+//                    //  show toast
+//                    Toaster(
+//                        context = context,
+//                        message = exception,
+//                        image = R.drawable.logo
+//                    ).show()
+//                    processing = false
+//                    Timber.d(exception)
+//                }
+//
+//
+//            }
 
 
             }
-
-
         }
     }
 }

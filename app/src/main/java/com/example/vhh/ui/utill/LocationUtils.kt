@@ -12,7 +12,6 @@ import android.location.LocationManager
 import androidx.core.app.ActivityCompat
 import com.example.vhh.ui.utill.locationModels.LocationResult
 import com.example.vhh.ui.utill.locationModels.Place
-import com.example.vhh.ui.utill.locationModels.SearchResults
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
@@ -149,14 +148,14 @@ suspend fun getNearbyAddress(lat: Double, lng: Double): List<LocationResult> {
     }
 }
 
-suspend fun searchAddress(lat: Double, lng: Double, query: String): List<LocationResult> {
+suspend fun searchAddress(lat: Double, lng: Double, query: String): List<com.example.vhh.ui.utill.locationModels.LocationResult> {
     return suspendCoroutine { continuation ->
-        NetworkCalls.get<SearchResults>(
+        NetworkCalls.get<com.example.vhh.ui.utill.locationModels.SearchResults>(
             endpoint = Endpoints.SEARCH_LOCATION(query, lat, lng),
             body = listOf()
         ).addOnSuccessListener { locationResult ->
             val locationResults = locationResult.predictions.map {
-                LocationResult(
+                com.example.vhh.ui.utill.locationModels.LocationResult(
                     formattedAddress = it.description,
                     placeId = it.placeId,
                     geometry = null
@@ -170,7 +169,7 @@ suspend fun searchAddress(lat: Double, lng: Double, query: String): List<Locatio
     }
 }
 
-suspend fun getPlaceDetails(address: String): LocationResult? {
+suspend fun getPlaceDetails(address: String): com.example.vhh.ui.utill.locationModels.LocationResult? {
     return suspendCoroutine { continuation ->
         NetworkCalls.get<Place>(
             endpoint = Endpoints.GET_ADDRESS(address),

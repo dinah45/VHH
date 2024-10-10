@@ -28,7 +28,6 @@ import com.example.vhh.ui.destinations.SignUpDestination
 import com.example.vhh.ui.theme.AppColor
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-//import com.vhh.R
 
 @ExperimentalComposeUiApi
 @Destination
@@ -44,7 +43,7 @@ fun Start(navigator: DestinationsNavigator){
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 Text(text = stringResource(id = R.string.welcome_to),
-    fontSize = 18.sp,
+    fontSize = 35.sp,
     fontWeight = FontWeight.Bold,
     color = AppColor)
 
@@ -53,17 +52,17 @@ Text(text = stringResource(id = R.string.welcome_to),
 
         Text(text = stringResource(id = R.string.lets_get_started),
             fontSize = 20.sp,
-            fontWeight = FontWeight.ExtraBold,
+            fontWeight = FontWeight.Medium,
             color = Color.Black
         )
-
+Spacer(Modifier.height(20.dp))
         VhhButton(onClick = {
-            navigator.navigate(LoginDestination)
+            navigator.navigate(LoginDestination(email = ""))
         }, text = stringResource(id = R.string.login))
         Spacer(modifier = Modifier.height(10.dp))
 
         VhhButton1(onClick = {
-            navigator.navigate(SignUpDestination)
+            navigator.navigate(SignUpDestination())
         }, text = stringResource(id = R.string.sign_up))
     }
 }

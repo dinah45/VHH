@@ -28,6 +28,7 @@ import androidx.compose.material.DropdownMenuItem
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.material.TextFieldDefaults
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -41,7 +42,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color.Companion.Black
+import androidx.compose.ui.graphics.Color.Companion.LightGray
 import androidx.compose.ui.graphics.Color.Companion.Transparent
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -50,17 +53,14 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
-//import com.cakkie.R
-//import com.cakkie.ui.theme.CakkieBackground
-//import com.cakkie.ui.theme.CakkieBrown
-//import com.cakkie.ui.theme.TextColorDark
-//import com.cakkie.utill.getCurrentAddress
-//import com.cakkie.utill.getNearbyAddress
-//import com.cakkie.utill.getPlaceDetails
-//import com.cakkie.utill.locationModels.LocationResult
-//import com.cakkie.utill.searchAddress
+import com.example.vhh.ui.utill.getCurrentAddress
+import com.example.vhh.ui.utill.getNearbyAddress
+import com.example.vhh.ui.utill.getPlaceDetails
+import com.example.vhh.ui.utill.locationModels.LocationResult
+import com.example.vhh.ui.utill.searchAddress
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 @Composable
 fun VhhInputField(
@@ -71,12 +71,12 @@ fun VhhInputField(
     keyboardType: KeyboardType,
     isError: Boolean = false,
     isAddress: Boolean = false,
-//    onLocationClick: (LocationResult) -> Unit = {},
+    onLocationClick: (LocationResult) -> Unit = {},
     leadingIcon: @Composable (() -> Unit)? = null,
     onClick: () -> Unit = {},
     isEditable: Boolean = true,
     showEditIcon: Boolean = false,
-//    location: Location? = null,
+    location: Location? = null,
     singleLine: Boolean = true
 ) {
     val scope = rememberCoroutineScope()
@@ -92,47 +92,47 @@ fun VhhInputField(
     var showSearch by remember {
         mutableStateOf(false)
     }
-//    var addressList by remember {
-//        mutableStateOf(
-//            listOf<LocationResult>()
-//        )
-//    }
-//
-//    LaunchedEffect(key1 = searchQuery, key2 = location) {
-//        if (isAddress && searchQuery.text.isEmpty()) {
-//            addressList = getNearbyAddress(
-//                location?.latitude ?: 0.0,
-//                location?.longitude ?: 0.0
-//            )
-//        }
-//        if (searchQuery.text.isNotEmpty()) {
-//            addressList = searchAddress(
-//                location?.latitude ?: 0.0,
-//                location?.longitude ?: 0.0,
-//                searchQuery.text
-//            )
-//        }
-//    }
-//
-//    LaunchedEffect(key1 = Unit) {
-//        if (location != null && isAddress) {
-////                                Timber.d("address is: "+context.getAddressFromLocation(location))
-//            scope.launch(Dispatchers.IO) {
-//                val address = getCurrentAddress(
-//                    location.latitude, location.longitude
-//                )
-//                onValueChange.invoke(
-//                    TextFieldValue(
-//                        address?.formattedAddress ?: ""
-//                    )
-//                )
-//
-//                if (address != null) {
-//                    onLocationClick.invoke(address)
-//                }
-//            }
-//        }
-//    }
+    var addressList by remember {
+        mutableStateOf(
+            listOf<LocationResult>()
+        )
+    }
+
+    LaunchedEffect(key1 = searchQuery, key2 = location) {
+        if (isAddress && searchQuery.text.isEmpty()) {
+            addressList = getNearbyAddress(
+                location?.latitude ?: 0.0,
+                location?.longitude ?: 0.0
+            )
+        }
+        if (searchQuery.text.isNotEmpty()) {
+            addressList = searchAddress(
+                location?.latitude ?: 0.0,
+                location?.longitude ?: 0.0,
+                searchQuery.text
+            )
+        }
+    }
+
+    LaunchedEffect(key1 = Unit) {
+        if (location != null && isAddress) {
+//                                Timber.d("address is: "+context.getAddressFromLocation(location))
+            scope.launch(Dispatchers.IO) {
+                val address = getCurrentAddress(
+                    location.latitude, location.longitude
+                )
+                onValueChange.invoke(
+                    TextFieldValue(
+                        address?.formattedAddress ?: ""
+                    )
+                )
+
+                if (address != null) {
+                    onLocationClick.invoke(address)
+                }
+            }
+        }
+    }
     Column {
         OutlinedTextField(
             isError = isError,
@@ -142,7 +142,7 @@ fun VhhInputField(
                 Text(
                     text = placeholder,
                     style = MaterialTheme.typography.bodyLarge,
-                    color = AppColor.copy(alpha = 0.5f),
+                    color = AppColor.copy(0.6f),
 
                     )
             },
@@ -159,21 +159,22 @@ fun VhhInputField(
             ),
             shape = RoundedCornerShape(20.dp),
             keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
-//            interactionSource = remember { MutableInteractionSource() }
-//                .also { interactionSource ->
-//                    LaunchedEffect(interactionSource) {
-//                        interactionSource.interactions.collect {
-//                            if (it is PressInteraction.Release) {
-//                                onClick.invoke()
-//                                if (isAddress) {
-//                                    showSearch = !showSearch
-//                                }
-//                            }
-//                        }
-//                    }
-//                },
+            interactionSource = remember { MutableInteractionSource() }
+                .also { interactionSource ->
+                    LaunchedEffect(interactionSource) {
+                        interactionSource.interactions.collect {
+                            if (it is PressInteraction.Release) {
+                                onClick.invoke()
+                                if (isAddress) {
+                                    showSearch = !showSearch
+                                }
+                            }
+                        }
+                    }
+                },
             modifier = modifier
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .height(50.dp),
             trailingIcon = {
                 if (keyboardType == KeyboardType.Password) {
                     if (visible) {
@@ -216,33 +217,33 @@ fun VhhInputField(
                     VisualTransformation.None
 
                 }
-//                if (isAddress) {
-//                    Image(
-//                        painter = painterResource(id = R.drawable.location),
-//                        contentDescription = "eye closed",
-//                        modifier = Modifier
-//                            .size(24.dp)
-//                            .clickable {
-//                                if (location != null) {
-////                                Timber.d("address is: "+context.getAddressFromLocation(location))
-//                                    scope.launch(Dispatchers.IO) {
-//                                        val address = getCurrentAddress(
-//                                            location.latitude, location.longitude
-//                                        )
-//                                        onValueChange.invoke(
-//                                            TextFieldValue(
-//                                                address?.formattedAddress ?: ""
-//                                            )
-//                                        )
-//
-//                                        if (address != null) {
-//                                            onLocationClick.invoke(address)
-//                                        }
-//                                    }
-//                                }
-//                            }
-//                    )
-//                }
+                if (isAddress) {
+                    Image(
+                        painter = painterResource(id = R.drawable.location),
+                        contentDescription = "eye closed",
+                        modifier = Modifier
+                            .size(24.dp)
+                            .clickable {
+                                if (location != null) {
+//                                Timber.d("address is: "+context.getAddressFromLocation(location))
+                                    scope.launch(Dispatchers.IO) {
+                                        val address = getCurrentAddress(
+                                            location.latitude, location.longitude
+                                        )
+                                        onValueChange.invoke(
+                                            TextFieldValue(
+                                                address?.formattedAddress ?: ""
+                                            )
+                                        )
+
+                                        if (address != null) {
+                                            onLocationClick.invoke(address)
+                                        }
+                                    }
+                                }
+                            }
+                    )
+                }
             },
             leadingIcon = leadingIcon,
             visualTransformation = if (!visible) {
@@ -252,78 +253,75 @@ fun VhhInputField(
             }
         )
     }
-}
-//        DropdownMenu(
-//            expanded = isAddress && showSearch,
-//            onDismissRequest = {
-//                showSearch = false
-//            },
-//            modifier = Modifier
-//                .background(CakkieBackground, RoundedCornerShape(8.dp))
-//                .clip(RoundedCornerShape(8.dp))
-//                .padding(vertical = 5.dp)
-//                .fillMaxWidth(0.9f)
-//                .height(300.dp)
-//                .align(CenterHorizontally)
-//        ) {
-//            Box(
-//                modifier = Modifier
-//                    .height(60.dp)
-//                    .fillMaxWidth()
-//                    .padding(horizontal = 10.dp)
-//            ) {
-//                CakkieInputField(
-//                    value = searchQuery,
-//                    onValueChange = { searchQuery = it },
-//                    placeholder = stringResource(id = R.string.search_address_city_state),
-//                    keyboardType = KeyboardType.Text,
-//                    leadingIcon = {
+    DropdownMenu(
+        expanded = isAddress && showSearch,
+        onDismissRequest = {
+            showSearch = false
+        },
+        modifier = Modifier
+            .background(color = colorResource(R.color.green_app), RoundedCornerShape(8.dp))
+            .clip(RoundedCornerShape(8.dp))
+            .padding(vertical = 5.dp)
+            .fillMaxWidth(0.9f)
+            .height(300.dp)
+//            .align(CenterHorizontally)
+    ) {
+        Box(
+            modifier = Modifier
+                .height(60.dp)
+                .fillMaxWidth()
+                .padding(horizontal = 10.dp)
+        ) {
+            VhhInputField(
+                value = searchQuery,
+                onValueChange = { searchQuery = it },
+                placeholder = stringResource(id = R.string.search_address_city_state),
+                keyboardType = KeyboardType.Text,
+                leadingIcon = {
+                    Icon(
+                        Icons.Default.Search,
 //                        Image(
 //                            painter = painterResource(id = R.drawable.search),
-//                            contentDescription = "search",
-//                            modifier = Modifier.size(24.dp)
-//                        )
-//                    },
-//                    modifier = Modifier
-//                        .padding(6.dp)
-//                        .height(65.dp)
-//                )
-//            }
-//            addressList.forEach { address ->
-//                Spacer(modifier = Modifier.height(10.dp))
-////                Timber.d("address: ${address.formattedAddress}")
-//                DropdownMenuItem(onClick = {
-//                    // Handle item selection
-//                    onValueChange.invoke(TextFieldValue(address.formattedAddress))
-//                    scope.launch {
-//                        val place = getPlaceDetails(address.formattedAddress)
-//                        if (place != null) {
-//                            onLocationClick.invoke(place)
-//                        }
-//                    }
-//                    showSearch = false
-//                }) {
-//
-//                    Text(
-//                        text = address.formattedAddress,
-//                        style = MaterialTheme.typography.bodyLarge,
-//                        color = Black,
-//                        fontWeight = FontWeight.Medium,
-//                        modifier = Modifier
-//                            .shadow(1.dp, RoundedCornerShape(8.dp))
-//                            .background(CakkieBackground)
-//                            .fillMaxWidth()
-//                            .padding(5.dp)
-//                    )
-//                    Spacer(modifier = Modifier.height(2.dp))
-//                }
-//
-//
-//            }
-//        }
-//
-//    }
-//}
+                        contentDescription = "search",
+                        modifier = Modifier.size(24.dp)
+                    )
+                },
+                modifier = Modifier
+                    .padding(6.dp)
+                    .height(65.dp)
+            )
+        }
+        addressList.forEach { address ->
+            Spacer(modifier = Modifier.height(10.dp))
+            Timber.d("address: ${address.formattedAddress}")
+            DropdownMenuItem(onClick = {
+                // Handle item selection
+                onValueChange.invoke(TextFieldValue(address.formattedAddress))
+                scope.launch {
+                    val place = getPlaceDetails(address.formattedAddress)
+                    if (place != null) {
+                        onLocationClick.invoke(place)
+                    }
+                }
+                showSearch = false
+            }) {
+
+                Text(
+                    text = address.formattedAddress,
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = Black,
+                    fontWeight = FontWeight.Medium,
+                    modifier = Modifier
+                        .shadow(1.dp, RoundedCornerShape(8.dp))
+                        .background(color = colorResource(R.color.green_app))
+                        .fillMaxWidth()
+                        .padding(5.dp)
+                )
+                Spacer(modifier = Modifier.height(2.dp))
+            }
+        }
+    }
+}
 //
 //@Composable
 //fun CakkieInputField(

@@ -32,7 +32,7 @@ fun VhhButton(
     Button(
         enabled = !processing && enabled,
         onClick = onClick,
-        colors = androidx.compose.material3.ButtonDefaults.buttonColors(
+        colors = ButtonDefaults.buttonColors(
             containerColor = color,
             contentColor = contentColor,
             disabledContainerColor = color.copy(alpha = 0.5f),
@@ -70,15 +70,14 @@ contentColor: Color = AppColor,
     Button(
         enabled = !processing && enabled,
         onClick = onClick,
-        colors = androidx.compose.material3.ButtonDefaults.buttonColors(
+        colors = ButtonDefaults.buttonColors(
             containerColor = color,
             contentColor = contentColor,
             disabledContainerColor = color.copy(alpha = 0.5f),
             disabledContentColor = Color.White
         ),
         modifier = modifier
-            .fillMaxWidth()
-            .padding(start = 16.dp, end = 16.dp),
+            .fillMaxWidth(),
         shape = RoundedCornerShape(20.dp),
 //leadingIcon = leadingIcon
     ) {

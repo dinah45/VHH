@@ -20,6 +20,8 @@ activity-compose = "1.8.1"
 compose-bom = "2023.10.01"
 compose = "1.5.0"
 material3 = "1.1.2"
+androidx-core = "1.9.0"
+appcompat = "1.6.1"
 
 #compose destination
 composeDestinationsVersion = "1.9.42-beta"
@@ -67,6 +69,7 @@ googleServicesVersion = "4.4.0"
 
 #firebase
 firebase-bom = "32.7.1"
+firebase-database-ktx = "20.3.0"
 
 #crashlytics
 firebaseCrashlyticsVersion = "2.9.9"
@@ -135,6 +138,7 @@ accompanist-pager-indicator = { group = "com.google.accompanist", name = "accomp
 #compose destinations
 destinations-core = { group = "io.github.raamcosta.compose-destinations", name = "animations-core", version.ref = "composeDestinationsVersion" }
 destinations-ksp = { group = "io.github.raamcosta.compose-destinations", name = "ksp", version.ref = "composeDestinationsVersion" }
+firebase-database-ktx = { group = "com.google.firebase", name = "firebase-database-ktx", version.ref = "firebase-database-ktx" }
 
 # Livedata
 livedata = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycle" }
@@ -179,6 +183,8 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 material = { group = "com.google.android.material", name = "material", version.ref = "materialVersion" }
 firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging", version.ref = "firebase-messaging" }
 firebase-firestore-ktx = { group = "com.google.firebase", name = "firebase-firestore-ktx", version.ref = "firebaseFirestoreKtxVersion" }
+androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidx-core" }
+appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
 
 
 [plugins]

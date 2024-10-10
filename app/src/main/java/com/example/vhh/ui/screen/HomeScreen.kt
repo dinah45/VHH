@@ -47,7 +47,7 @@ import com.example.vhh.R
 import com.example.vhh.ui.destinations.HealthEducationDestination
 import com.example.vhh.ui.destinations.MedicationDestination
 import com.example.vhh.ui.destinations.PharmacyDestination
-import com.example.vhh.ui.navigation.BottomNav
+//import com.example.vhh.ui.navigation.BottomNav
 import com.example.vhh.ui.theme.AppColor
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator

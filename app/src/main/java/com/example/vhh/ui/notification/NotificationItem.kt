@@ -1,7 +1,5 @@
 package com.example.vhh.ui.notification
 
-import android.app.Notification
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -24,16 +22,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.example.vhh.R
 import com.example.vhh.ui.theme.AppColor
+import com.example.vhh.ui.utill.formatDate
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 
 @Composable
-fun NotificationItem(item: Notification, isBackground: Boolean, navigator: DestinationsNavigator) {
+fun NotificationItem(
+    item: com.example.vhh.ui.networkModels.Notification,
+    isBackground: Boolean,
+    navigator: DestinationsNavigator) {
     Row {
         if (isBackground) {
             Box(

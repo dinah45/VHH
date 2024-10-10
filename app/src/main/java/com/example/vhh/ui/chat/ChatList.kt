@@ -25,7 +25,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Icon
+import androidx.compose.material.Icon
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -54,6 +55,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.compose.AsyncImagePainter
+import com.example.vhh.ui.networkModels.Conversation
+import com.example.vhh.ui.networkModels.Message
+import com.example.vhh.ui.utill.formatDate
+import com.example.vhh.ui.utill.toObject
 import com.google.accompanist.placeholder.PlaceholderHighlight
 import com.google.accompanist.placeholder.material.shimmer
 import com.google.accompanist.placeholder.placeholder
@@ -129,12 +134,13 @@ fun ChatList(navigator: DestinationsNavigator) {
             }
 
             IconButton(onClick = {
-                navigator.navigate(ChatDestination("support"))
+//                navigator.navigate(ChatDestination("support"))
             }) {
+
                 Image(
-                    painter = painterResource(id = R.drawable.support),
+                    painter = painterResource(id = R.drawable.sms),
                     contentDescription = stringResource(
-                        id = R.string.support
+                        id = R.string.skip
                     ),
                     modifier = Modifier
                         .size(27.dp),

@@ -202,4 +202,6 @@ dependencies {
     //for date time
     implementation(libs.threetenabp)
 
-}
+//    appcompat
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.appcompat)}

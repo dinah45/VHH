@@ -31,6 +31,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
+import com.example.vhh.ui.destinations.OtpScreenDestination
 import com.example.vhh.ui.utill.Toaster
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -41,10 +42,12 @@ import timber.log.Timber
 @ExperimentalComposeUiApi
 @Destination
 @Composable
-fun ForgetPassword(mail: String, navigator: DestinationsNavigator) {
+//fun ForgotPassword(){
+fun ForgotPassword(email: String,
+                   navigator: DestinationsNavigator) {
     val viewModel: AuthViewModel = koinViewModel()
     var email by remember {
-        mutableStateOf(TextFieldValue(mail))
+        mutableStateOf(TextFieldValue(""))
     }
     //email regex
     val emailRegex = Regex(pattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")
@@ -78,10 +81,10 @@ fun ForgetPassword(mail: String, navigator: DestinationsNavigator) {
 
         Image(
             painter = painterResource(id = R.drawable.logo),
-            contentDescription = "Cakkie Logo",
+            contentDescription = "vhh Logo",
             modifier = Modifier
                 .padding(bottom = 30.dp)
-                .size(160.dp)
+                .size(250.dp)
                 .align(Alignment.CenterHorizontally)
         )
 
@@ -111,8 +114,8 @@ fun ForgetPassword(mail: String, navigator: DestinationsNavigator) {
                 color = Color.Red
             )
         }
-        Spacer(modifier = Modifier.weight(0.3f))
-        VhhButton (
+        Spacer(modifier = Modifier.height(70.dp))
+        VhhButton(
             Modifier.fillMaxWidth(),
             processing = processing,
             enabled = email.text.isNotEmpty(),
@@ -130,14 +133,13 @@ fun ForgetPassword(mail: String, navigator: DestinationsNavigator) {
                         message = response.message,
                         image = R.drawable.logo
                     ).show()
-                    //    navigate to otp screen
+//                    //    navigate to otp screen
                     navigator.navigate(
-                        Otp
-
-//                        (
-//                            email = email.text,
-//                            isNewDevice = false
-//                        )
+                        OtpScreenDestination
+                            (
+                            email = email.text,
+                            isNewDevice = false
+                        )
                     )
                 }.addOnFailureListener { exception ->
                     //  show toast

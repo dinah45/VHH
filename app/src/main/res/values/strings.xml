@@ -4,6 +4,12 @@
     <string name="lets_get_started">Lets get Started</string>
     <string name="or_login_with">Or login with</string>
     <string name="profile">Profile</string>
+    <string name="yes_it_was_me">Yes, it was me</string>
+    <string name="no_it_was_not_me">No, it was not me</string>
+    <string name="device_">Device</string>
+    <string name="model_">Model</string>
+    <string name="change_profile_picture">Change profile picture</string>
+    <string name="edit_profile">Edit profile</string>
     <string name="new_device_detected">New Device Detected</string>
     <string name="otp_verification">OTP Verification</string>
     <string name="kindly_enter_the_verification_code_sent_to_your_email">Kindly enter the verification code sent to your email</string>
@@ -47,6 +53,9 @@
     <string name="dont_have_an_account">Dont have an account?</string>
     <string name="already_have_an_account">Already have an account?</string>
     <string name="password">Password</string>
+    <string name="greenish_meridian">Greenish Meridian</string>
+    <string name="was_this_you">Was this you?</string>
+    <string name="unknown_device">Unknown device</string>
     <string name="email_adress">Email Address</string>
     <string name="gender">Gender</string>
     <string name="continue_with_google">Continue with Google</string>
@@ -54,7 +63,7 @@
     <string name="continue_with_email">Continue with Email</string>
     <string name="first_aid">First Aid</string>
     <string name="phone_number">Phone Number</string>
-    <string name="region">Region</string>
+    <string name="location">Locaton</string>
     <string name="water">Water</string>
     <string name="sanitation">Sanitation</string>
     <string name="hygiene">Hygiene</string>
@@ -78,4 +87,18 @@
         recieve medical advice and prescriptions</string>
     <string name="medication_management">Prescribed treatment including notifications for
         refills and dosage schedule</string>
+    <string name="name">name</string>
+    <string name="address_City_State">address_City_State</string>
+    <string name="save_changes">save_changes</string>
+    <string name="about">about\n</string>
+    <string name="posts">posts\n</string>
+    <string name="following">following</string>
+    <string name="follow">follow</string>
+    <string name="search_address_city_state">search_address_city_state</string>
+    <string name="followers">followers</string>
+    <string name="favourite_feed">favourite_feed</string>
+    <string name="welcome_back">welcome_back</string>
+    <string name="firstName">firstName</string>
+    <string name="LastName">lastName</string>
+    <string name="create_Account">create_Account</string>
 </resources>

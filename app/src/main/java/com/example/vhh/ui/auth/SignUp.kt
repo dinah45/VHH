@@ -1,5 +1,6 @@
 package com.example.vhh.ui.auth
 
+import android.app.Activity
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -20,6 +21,7 @@ import androidx.compose.material.icons.filled.Email
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -42,9 +44,16 @@ import com.example.vhh.ui.components.VhhButton
 import com.example.vhh.ui.components.VhhInputField
 import com.example.vhh.ui.destinations.HomeScreenDestination
 import com.example.vhh.ui.destinations.LoginDestination
+import com.example.vhh.ui.destinations.OtpScreenDestination
 import com.example.vhh.ui.theme.AppColor
+import com.example.vhh.ui.utill.Toaster
+import com.example.vhh.ui.utill.getCurrentLocation
+import com.example.vhh.ui.utill.locationModels.LocationResult
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import kotlinx.coroutines.delay
+import org.koin.androidx.compose.koinViewModel
+import timber.log.Timber
 
 @ExperimentalComposeUiApi
 @Destination
@@ -54,13 +63,22 @@ fun SignUp(navigator: DestinationsNavigator) {
     var email by remember { mutableStateOf(TextFieldValue("")) }
     var phoneNumber by remember { mutableStateOf(TextFieldValue("")) }
     var gender by remember { mutableStateOf(TextFieldValue("")) }
-    var region by remember { mutableStateOf(TextFieldValue("")) }
+    var firstName by remember {
+        mutableStateOf(TextFieldValue(""))
+    }
+    var lastName by remember {
+        mutableStateOf(TextFieldValue(""))
+    }
+    var location by remember {
+        mutableStateOf<LocationResult?>(null)
+    }
     val context = LocalContext.current
     val keyboardController = LocalSoftwareKeyboardController.current
-//    var password by remember { mutableStateOf(TextFieldValue("")) }
+    var password by remember { mutableStateOf(TextFieldValue("")) }
     var processing by remember {
         mutableStateOf(false)
     }
+
     var isError by remember {
         mutableStateOf(false)
     }
@@ -73,6 +91,43 @@ fun SignUp(navigator: DestinationsNavigator) {
     var isEmailValid by remember {
         mutableStateOf(true)
     }
+    val viewModel: AuthViewModel = koinViewModel()
+
+    var address by remember {
+        mutableStateOf(TextFieldValue(""))
+    }
+    val activity = context as Activity
+
+    var referralCode by remember {
+        mutableStateOf(TextFieldValue(""))
+    }
+    var isChecked by remember {
+        mutableStateOf(
+            false
+        )
+    }
+    val currentLocation = activity.getCurrentLocation()
+
+//    LaunchedEffect(name.text) {
+//        if (name.text.isNotBlank()) {
+//            delay(500L)
+//            viewModel.checkUserName(name.text)
+//                .addOnSuccessListener { isFree ->
+//                    Timber.d("Username availability: ${isFree.name}")
+////                    isNameTaken = !isFree.username.equals(userName.text, ignoreCase = true)
+//                    isNameTaken = true
+//                }
+//                .addOnFailureListener { exception ->
+//                    Timber.d("Username check failed: $exception")
+//                    isUsernameTaken = false // Assume taken if check fails
+//                }
+//        }
+//    }
+    val canProceed = firstName.text.isNotBlank() &&
+            lastName.text.isNotBlank() &&
+            address.text.isNotBlank() &&
+            password.text.isNotBlank() && isChecked
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -81,7 +136,7 @@ fun SignUp(navigator: DestinationsNavigator) {
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.Start
     ) {
-        Spacer(modifier = Modifier.height(70.dp))
+        Spacer(modifier = Modifier.height(30.dp))
         Text(
             text = stringResource(id = R.string.hello),
             fontSize = 25.sp,
@@ -96,6 +151,20 @@ fun SignUp(navigator: DestinationsNavigator) {
             color = AppColor
         )
                     Spacer(modifier = Modifier.height(40.dp))
+        VhhInputField(
+            value = firstName,
+            onValueChange = { firstName = it.copy(text = it.text.trim()) },
+            placeholder = stringResource(id = R.string.firstName),
+            keyboardType = KeyboardType.Text,
+        )
+        Spacer(modifier = Modifier.height(10.dp))
+        VhhInputField(
+            value = lastName,
+            onValueChange = { lastName = it.copy(text = it.text.trim()) },
+            placeholder = stringResource(id = R.string.LastName),
+            keyboardType = KeyboardType.Text,
+        )
+        Spacer(modifier = Modifier.height(10.dp))
         VhhInputField(
             value = email,
             onValueChange = { email = it.copy(text = it.text.trim())},
@@ -155,51 +224,78 @@ fun SignUp(navigator: DestinationsNavigator) {
                 color = Color.Red
             )
         }
+
         Spacer(modifier = Modifier.height(10.dp))
         VhhInputField(
-            value = region,
-            onValueChange = {
-                isError = false
-                region = it
-            },
-            placeholder = stringResource(id = R.string.region),
+            value = address,
+            onValueChange = { address = it.copy(text = it.text.trim()) },
+            placeholder = stringResource(id = R.string.address_City_State),
             keyboardType = KeyboardType.Text,
-            isError = isError,
-        )
-        //show error if email is not valid
-        if (isError) {
-            Text(
-                text = message,
-                style = MaterialTheme.typography.bodyLarge,
-                color = Color.Red
-            )
-        }
-        Spacer(modifier = Modifier.height(50.dp))
-        VhhButton(text = stringResource(id = R.string.sign_up)) {
-            isEmailValid = emailRegex.matches(input = email.text)
-            if (isEmailValid) {
-                processing = true}
-            if (email.text.isEmpty()&&phoneNumber.text.isEmpty()&&gender.text.isEmpty()&&region
-                .text.isEmpty()){
-                Toast.makeText(context, "Please fill all the fields", Toast.LENGTH_SHORT).show()
-            }else if (email.text.isEmpty() ){
-                Toast.makeText(context, "Please enter your email", Toast.LENGTH_SHORT).show()
-            }else if (phoneNumber.text.isEmpty()){
-                Toast.makeText(context, "Please enter your phone number", Toast.LENGTH_SHORT).show()
-            }else if (gender.text.isEmpty()){
-                Toast.makeText(context, "Please enter your gender", Toast.LENGTH_SHORT).show()
-            }else if (region.text.isEmpty()){
-                Toast.makeText(context, "Please enter your region", Toast.LENGTH_SHORT).show()
-            }else{
-                navigator.navigate(HomeScreenDestination)
+            isAddress = true,
+            isEditable = false,
+            location = currentLocation,
+            onLocationClick = {
+                location = it
             }
+        )
+        Spacer(modifier = Modifier.height(10.dp))
+        VhhInputField(
+            value = password,
+            onValueChange = { password = it.copy(text = it.text.trim()) },
+            placeholder = stringResource(id = R.string.password),
+            keyboardType = KeyboardType.Password,
+        )
+        Spacer(modifier = Modifier.height(50.dp))
+        VhhButton(
+            Modifier.fillMaxWidth(),
+            processing = processing,
+            enabled = canProceed,
+            text = stringResource(id = R.string.create_Account)
+        ) {
+
+            // check if the email is valid
+            processing = true
+            viewModel.signUp(
+                email = email.toString(),
+                password = password.text,
+                firstName = firstName.text,
+                lastName = lastName.text,
+                address = address.text,
+                location = location!!
+            ).addOnSuccessListener { resp ->
+                processing = false
+                if (resp.token.isNotEmpty()) {
+                    viewModel.saveToken(resp.token)
+                }
+                Timber.d(resp.toString())
+                //navigate to home screen
+                navigator.navigate(
+                    OtpScreenDestination(
+                        email = email.toString(),
+                        isNewDevice = false,
+                        isSignUp = true
+                    )
+                ) {
+                    launchSingleTop = true
+                }
+            }.addOnFailureListener { exception ->
+                //show toast
+                Toaster(
+                    context = context,
+                    message = exception,
+                    image = R.drawable.logo
+                ).show()
+                processing = false
+                Timber.d(exception)
+            }
+
         }
         Spacer(modifier = Modifier.height(40.dp))
 
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
-                .size(35.dp)
+                .size(40.dp)
                 .clickable { },
             shape = RoundedCornerShape(40),
             color = Color(0xFF888888).copy(0.3f),
@@ -226,7 +322,7 @@ Image(painter = painterResource(id = R.drawable.google), contentDescription = ""
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
-                .size(35.dp)
+                .size(40.dp)
                 .clickable { },
             shape = RoundedCornerShape(40),
             color = Color(0xFF888888).copy(0.3f),
@@ -249,34 +345,8 @@ Image(painter = painterResource(id = R.drawable.apple), contentDescription = "")
                 )
             }
         }
-        Spacer(modifier = Modifier.height(10.dp))
 
-        Surface(
-            modifier = Modifier
-                .fillMaxWidth()
-                .size(35.dp)
-                .clickable { },
-            shape = RoundedCornerShape(40),
-            color = Color(0xFF888888).copy(0.3f),
-            contentColor = Color.Black
-        ) {
-            Row (
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 37.dp),
-                horizontalArrangement = Arrangement.Start,
-                verticalAlignment = Alignment.CenterVertically
-            ){
-Image(imageVector = Icons.Default.Email, contentDescription = "")
-                Text(text = stringResource(id = R.string.continue_with_email),
-                  fontWeight =  FontWeight.Medium,
-                    color = Color.Black,
-                    fontSize = 13.sp,
-                    modifier = Modifier.padding(start = 15.dp)
-                )
-            }
-        }
-        Spacer(modifier = Modifier.height(50.dp))
+        Spacer(modifier = Modifier.height(30.dp))
         Row (modifier = Modifier.padding(start= 90.dp)){
             Text(
                 text = stringResource(id = R.string.already_have_an_account),
@@ -286,8 +356,9 @@ Image(imageVector = Icons.Default.Email, contentDescription = "")
                 text = stringResource(id = R.string.login),
                 fontSize = 13.sp,
                 color = AppColor,
+                fontWeight = FontWeight.Bold,
                 modifier = Modifier.clickable {
-                    navigator.navigate(LoginDestination)
+//                    navigator.navigate(LoginDestination())
                 }
             )
         }

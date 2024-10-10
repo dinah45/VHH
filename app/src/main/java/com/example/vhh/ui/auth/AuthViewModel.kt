@@ -7,9 +7,11 @@ import com.example.vhh.ui.data.db.models.User
 import com.example.vhh.ui.data.respositories.UserRepository
 import com.example.vhh.ui.datastore.Settings
 import com.example.vhh.ui.datastore.SettingsConstants
+import com.example.vhh.ui.networkModels.LoginResponse
 import com.example.vhh.ui.utill.Endpoints
 import com.example.vhh.ui.utill.NetworkCalls
 import com.example.vhh.ui.utill.locationModels.LocationResult
+//import com.example.vhh.ui.utill.locationModels.LocationResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
@@ -43,16 +45,16 @@ class AuthViewModel(private val settings: Settings) : ViewModel(), KoinComponent
             userRepository.createUser(user)
         }
 
-    //login
+//    login
     fun signUp(
-        email: String,
-        password: String,
-        firstName: String,
-        lastName: String,
-        userName: String,
-        address: String,
-        location: LocationResult,
-        referralCode: String? = null
+    email: String,
+    password: String,
+    firstName: String,
+    lastName: String,
+//    userName: String,
+    address: String,
+    location: LocationResult,
+//    referralCode: String? = null
     ) =
         NetworkCalls.post<LoginResponse>(
             endpoint = Endpoints.SIGNUP, body = listOf(
@@ -60,7 +62,7 @@ class AuthViewModel(private val settings: Settings) : ViewModel(), KoinComponent
                 Pair("password", password),
                 Pair("firstName", firstName),
                 Pair("lastName", lastName),
-                Pair("userName", userName),
+//                Pair("userName", userName),
                 Pair("address", address),
                 Pair("city",
                     location.addressComponents.firstOrNull { it.types.contains("locality") }?.longName
@@ -76,7 +78,7 @@ class AuthViewModel(private val settings: Settings) : ViewModel(), KoinComponent
                     location.addressComponents.firstOrNull { it.types.contains("country") }?.longName
                         ?: ""
                 ),
-                Pair("referralCode", referralCode),
+//                Pair("referralCode", referralCode),
             )
         )
 

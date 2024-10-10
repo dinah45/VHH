@@ -39,3 +39,4 @@ class Toaster(
         duration = LENGTH_LONG
     }
 }
+
