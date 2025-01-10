@@ -42,7 +42,7 @@ import androidx.compose.ui.unit.sp
 import com.example.vhh.R
 import com.example.vhh.ui.components.VhhButton
 import com.example.vhh.ui.components.VhhInputField
-import com.example.vhh.ui.destinations.HomeScreenDestination
+//import com.example.vhh.ui.destinations.HomeScreenDestination
 import com.example.vhh.ui.destinations.LoginDestination
 import com.example.vhh.ui.destinations.OtpScreenDestination
 import com.example.vhh.ui.theme.AppColor
@@ -208,22 +208,10 @@ fun SignUp(navigator: DestinationsNavigator) {
         Spacer(modifier = Modifier.height(10.dp))
         VhhInputField(
             value = gender,
-            onValueChange = {
-                isError = false
-                gender = it
-            },
+            onValueChange = { gender = it.copy(text = it.text.trim()) },
             placeholder = stringResource(id = R.string.gender),
             keyboardType = KeyboardType.Text,
-            isError = isError,
         )
-        //show error if email is not valid
-        if (isError) {
-            Text(
-                text = message,
-                style = MaterialTheme.typography.bodyLarge,
-                color = Color.Red
-            )
-        }
 
         Spacer(modifier = Modifier.height(10.dp))
         VhhInputField(

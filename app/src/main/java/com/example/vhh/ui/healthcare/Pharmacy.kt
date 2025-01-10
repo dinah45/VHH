@@ -240,7 +240,7 @@ fun Pharmacy (navigator: DestinationsNavigator
                     Row(
                         modifier = Modifier.padding(start = 12.dp)
                     ) {
-                        AddCart()
+//                        AddCart(navigator = navigator)
                     }
                 }
             }
@@ -291,7 +291,7 @@ fun Pharmacy (navigator: DestinationsNavigator
                     Row(
                         modifier = Modifier.padding(start = 12.dp)
                     ) {
-                        AddCart()
+//                        AddCart(navigator = navigator)
                     }
                 }
             }
@@ -349,7 +349,7 @@ fun Pharmacy (navigator: DestinationsNavigator
                     Row(
                         modifier = Modifier.padding(start = 12.dp)
                     ) {
-                        AddCart()
+//                        AddCart(navigator = navigator)
                     }
                 }
             }
@@ -400,7 +400,7 @@ fun Pharmacy (navigator: DestinationsNavigator
                     Row(
                         modifier = Modifier.padding(start = 12.dp)
                     ) {
-                        AddCart()
+//                        AddCart(navigator = navigator)
                     }
                 }
             }
@@ -458,7 +458,7 @@ fun Pharmacy (navigator: DestinationsNavigator
                     Row(
                         modifier = Modifier.padding(start = 12.dp)
                     ) {
-                        AddCart()
+//                        AddCart(navigator = navigator)
                     }
                 }
             }
@@ -509,7 +509,7 @@ fun Pharmacy (navigator: DestinationsNavigator
                     Row(
                         modifier = Modifier.padding(start = 12.dp)
                     ) {
-                        AddCart()
+//                        AddCart(navigator = navigator)
                     }
                 }
             }
@@ -568,7 +568,7 @@ fun Pharmacy (navigator: DestinationsNavigator
                     Row(
                         modifier = Modifier.padding(start = 12.dp)
                     ) {
-                        AddCart()
+//                        AddCart(navigator = navigator)
                     }
                 }
             }
@@ -620,7 +620,7 @@ fun Pharmacy (navigator: DestinationsNavigator
                     Row(
                         modifier = Modifier.padding(start = 12.dp)
                     ) {
-                        AddCart()
+//                        AddCart(navigator = navigator)
                     }
                 }
             }
@@ -683,7 +683,7 @@ fun Pharmacy (navigator: DestinationsNavigator
                     Row(
                         modifier = Modifier.padding(start = 12.dp)
                     ) {
-                        AddCart()
+//                        AddCart(navigator = navigator)
                     }
                 }
             }
@@ -739,7 +739,7 @@ fun Pharmacy (navigator: DestinationsNavigator
                     Row(
                         modifier = Modifier.padding(start = 12.dp)
                     ) {
-                        AddCart()
+//                        AddCart(navigator = navigator)
                     }
                 }
             }

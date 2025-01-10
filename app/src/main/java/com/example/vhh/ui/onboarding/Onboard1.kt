@@ -97,7 +97,7 @@ Card(modifier = Modifier
                 )
                 Text(
                     text = stringResource(id = R.string.awarness), fontSize = 28.sp,
-                    fontWeight = FontWeight.Bold, color = Color.White,
+                    fontWeight = FontWeight.Bold, color = Color.Black,
                 )
             }
             Spacer(modifier = Modifier.height(20.dp))
@@ -106,7 +106,7 @@ Card(modifier = Modifier
                 text = stringResource(id = R.string.educational_resources_and_information),
                 fontSize = 15.sp,
                 textAlign = TextAlign.Center,
-                color = Color.White,
+                color = Color.Black,
                 modifier = Modifier.padding(start = 20.dp, end = 16.dp)
             )
             Spacer(modifier = Modifier.height(80.dp))

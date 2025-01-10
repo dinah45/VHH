@@ -149,7 +149,7 @@ fun VhhInputField(
             textStyle = MaterialTheme.typography.bodyLarge,
             singleLine = singleLine,
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                backgroundColor = Color.LightGray.copy(alpha = 0.5f),
+                backgroundColor = LightGray.copy(alpha = 0.5f),
                 focusedBorderColor = AppColor,
                 unfocusedBorderColor = AppColor.copy(alpha = 0.5f),
                 disabledBorderColor = Transparent,

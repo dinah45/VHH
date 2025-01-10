@@ -24,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.example.vhh.ui.destinations.AuthNotificationDestination
 import com.example.vhh.ui.theme.AppColor
 import com.example.vhh.ui.utill.formatDate
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -57,9 +58,9 @@ fun NotificationItem(
                 .padding(horizontal = 16.dp, vertical = 8.dp)
 //                .height(65.dp)
                 .clickable {
-//                    navigator.navigate(
-//                        AuthNotificationDestination
-//                    )
+                    navigator.navigate(
+                        AuthNotificationDestination
+                    )
                 }
 
         ) {

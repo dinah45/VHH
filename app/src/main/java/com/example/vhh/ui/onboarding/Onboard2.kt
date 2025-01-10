@@ -89,15 +89,15 @@ fun Onboard2 (navigator: DestinationsNavigator) {
                 horizontalArrangement = Arrangement.Absolute.Center
             ){
                 Text(text = stringResource(id = R.string.health_tracking), fontSize = 25.sp,
-                    fontWeight = FontWeight.Bold, color = Color.White,
+                    fontWeight = FontWeight.Bold, color = Color.Black,
                 )
                 Text(
                     text = " &", fontSize = 25.sp,
-                    fontWeight = FontWeight.Bold, color = Color.White.copy(0.3f),
+                    fontWeight = FontWeight.Bold, color = Color.Black.copy(0.3f),
                 )}
                 Text(
                     text = stringResource(id = R.string.monitoring), fontSize = 25.sp,
-                    fontWeight = FontWeight.Bold, color = Color.White,
+                    fontWeight = FontWeight.Bold, color = Color.Black,
                 )
             Spacer(modifier = Modifier.height(20.dp))
 
@@ -105,7 +105,7 @@ fun Onboard2 (navigator: DestinationsNavigator) {
                 text = stringResource(id = R.string.track_your_health),
                 fontSize = 15.sp,
                 textAlign = TextAlign.Center,
-                color = Color.White,
+                color = Color.Black,
                 modifier = Modifier.padding(start = 20.dp, end = 20.dp)
 
             )

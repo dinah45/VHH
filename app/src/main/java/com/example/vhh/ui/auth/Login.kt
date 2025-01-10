@@ -40,6 +40,7 @@ import com.example.vhh.ui.components.VhhButton
 import com.example.vhh.ui.components.VhhInputField
 import com.example.vhh.ui.destinations.ForgotPasswordDestination
 import com.example.vhh.ui.destinations.HomeScreenDestination
+//import com.example.vhh.ui.destinations.HomeScreenDestination
 import com.example.vhh.ui.destinations.LoginDestination
 import com.example.vhh.ui.destinations.OtpScreenDestination
 import com.example.vhh.ui.destinations.SignUpDestination
@@ -124,22 +125,10 @@ fun Login(email: String,
         Spacer(modifier = Modifier.height(10.dp))
         VhhInputField(
             value = password,
-            onValueChange = {
-                isError = false
-                password = it
-            },
+            onValueChange = { password = it.copy(text = it.text.trim()) },
             placeholder = stringResource(id = R.string.password),
             keyboardType = KeyboardType.Password,
-            isError = isError,
         )
-        //show error if email is not valid
-        if (isError) {
-            Text(
-                text = message,
-                style = MaterialTheme.typography.bodyLarge,
-                color = Color.Red
-            )
-        }
         Text(
             stringResource(R.string.forget_password),
             fontWeight = FontWeight.Normal,
@@ -220,7 +209,6 @@ fun Login(email: String,
                 fontSize = 25.sp,
                 fontWeight = FontWeight.Bold,
                 color = AppColor,
-                modifier = Modifier.padding(start = 100.dp)
             )
         }
         Spacer(modifier = Modifier.height(60.dp))

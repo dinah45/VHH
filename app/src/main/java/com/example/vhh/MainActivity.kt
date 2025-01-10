@@ -2,7 +2,6 @@ package com.example.vhh
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.os.Parcelable
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -12,17 +11,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.ViewModel
 import com.example.vhh.ui.NavGraphs
-import com.example.vhh.ui.chat.ChatItem
-import com.example.vhh.ui.data.db.models.User
+import com.example.vhh.ui.auth.AuthViewModel
 import com.example.vhh.ui.theme.VHHTheme
-import com.example.vhh.ui.networkModels.Message
-import com.example.vhh.ui.notification.Notification
 import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
 import com.ramcosta.composedestinations.DestinationsNavHost
 import com.ramcosta.composedestinations.animations.rememberAnimatedNavHostEngine
-import kotlinx.android.parcel.Parcelize
-import kotlinx.serialization.Serializable
+import org.koin.androidx.compose.koinViewModel
 
 
 @ExperimentalComposeUiApi
@@ -37,7 +33,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             VHHTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) {
-//                    android.app.Notification()
+//                    HomeScreen()
                     DestinationsNavHost(navGraph = NavGraphs.root,
                         engine = rememberAnimatedNavHostEngine()
                     )

@@ -737,12 +737,12 @@ fun Profile(id: String, shop: ShopModel = ShopModel(), navigator: DestinationsNa
                                 Box(
                                     modifier = Modifier
                                         .clickable {
-                                            navigator.navigate(
-                                                ItemDetailsDestination(
-                                                    id = item.id,
-                                                    item
-                                                )
-                                            )
+//                                            navigator.navigate(
+////                                                ItemDetailsDestination(
+//                                                    id = item.id,
+//                                                    item
+//                                                )
+//                                            )
                                         }
                                         .padding(2.dp)
                                         .size(width = 118.dp, height = 116.dp),
@@ -774,11 +774,11 @@ fun Profile(id: String, shop: ShopModel = ShopModel(), navigator: DestinationsNa
                                         modifier = Modifier.padding(end = 10.dp),
                                         horizontalArrangement = Arrangement.SpaceBetween
                                     ) {
-                                        Image(
-                                            painter = painterResource(id = R.drawable.gridicons_heart),
-                                            contentDescription = "",
-                                            modifier = Modifier.size(12.dp)
-                                        )
+//                                        Image(
+//                                            painter = painterResource(id = R.drawable.gridicons_heart),
+//                                            contentDescription = "",
+//                                            modifier = Modifier.size(12.dp)
+//                                        )
                                         Text(
                                             text = item.totalLikes.toString(),
                                             style = MaterialTheme.typography.displaySmall,

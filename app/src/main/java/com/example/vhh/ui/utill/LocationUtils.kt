@@ -148,14 +148,14 @@ suspend fun getNearbyAddress(lat: Double, lng: Double): List<LocationResult> {
     }
 }
 
-suspend fun searchAddress(lat: Double, lng: Double, query: String): List<com.example.vhh.ui.utill.locationModels.LocationResult> {
+suspend fun searchAddress(lat: Double, lng: Double, query: String): List<LocationResult> {
     return suspendCoroutine { continuation ->
         NetworkCalls.get<com.example.vhh.ui.utill.locationModels.SearchResults>(
             endpoint = Endpoints.SEARCH_LOCATION(query, lat, lng),
             body = listOf()
         ).addOnSuccessListener { locationResult ->
             val locationResults = locationResult.predictions.map {
-                com.example.vhh.ui.utill.locationModels.LocationResult(
+                LocationResult(
                     formattedAddress = it.description,
                     placeId = it.placeId,
                     geometry = null
@@ -169,7 +169,7 @@ suspend fun searchAddress(lat: Double, lng: Double, query: String): List<com.exa
     }
 }
 
-suspend fun getPlaceDetails(address: String): com.example.vhh.ui.utill.locationModels.LocationResult? {
+suspend fun getPlaceDetails(address: String): LocationResult? {
     return suspendCoroutine { continuation ->
         NetworkCalls.get<Place>(
             endpoint = Endpoints.GET_ADDRESS(address),

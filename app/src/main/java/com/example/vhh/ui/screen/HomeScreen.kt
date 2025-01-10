@@ -3,9 +3,7 @@ package com.example.vhh.ui.screen
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.ScrollableDefaults
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -16,14 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Card
@@ -44,33 +35,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.vhh.R
-import com.example.vhh.ui.destinations.HealthEducationDestination
-import com.example.vhh.ui.destinations.MedicationDestination
-import com.example.vhh.ui.destinations.PharmacyDestination
-//import com.example.vhh.ui.navigation.BottomNav
 import com.example.vhh.ui.theme.AppColor
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
-//
-//@Composable
-//fun MyCard() {
-//    Card(
-//        modifier = Modifier
-//            .size(150.dp)
-//            .padding(10.dp)
-//            .background(color = colorResource(R.color.green_app),
-//                shape = RoundedCornerShape(20)),
-//        elevation = 1.dp){
-//
-//    }
-//}
 
 @ExperimentalComposeUiApi
 @Destination
 @Composable
-fun HomeScreen (
-//fun HomeScreen (navigator: DestinationsNavigator
+//fun HomeScreen (
+fun HomeScreen (navigator: DestinationsNavigator
 ) {
     val scrollState = rememberScrollState()
     Column(
@@ -95,8 +69,6 @@ fun HomeScreen (
                 horizontalArrangement = Arrangement.Absolute.SpaceBetween,
                 verticalAlignment = Alignment.Bottom
             ) {
-                Image(painter = painterResource(id = R.drawable.whitesms), contentDescription = "",
-                    modifier = Modifier.clickable { })
                 Text(
                     text = stringResource(id = R.string.menu),
                     fontWeight = FontWeight.Bold,
@@ -106,6 +78,10 @@ fun HomeScreen (
                         .paddingFromBaseline(top = 10.dp)
                 )
                 Image(painter = painterResource(id = R.drawable.bell),
+                    contentDescription = "",
+                    modifier
+                    = Modifier.clickable { })
+                Image(painter = painterResource(id = R.drawable.vec),
                     contentDescription = "",
                     modifier
                     = Modifier.clickable { })
@@ -163,7 +139,7 @@ fun HomeScreen (
             verticalAlignment = Alignment.Top,
             horizontalArrangement = Arrangement.Center
         ) {
-        Surface(
+            Surface(
                 modifier = Modifier.size(width = 180.dp, height = 140.dp)
                     .clickable {
 //                            navigator.navigate(MedicationDestination)
@@ -185,7 +161,7 @@ fun HomeScreen (
             Surface(
                 modifier = Modifier.size(width = 180.dp, height = 140.dp)
                     .clickable {
-//                            navigator.navigate(HealthEducationDestination)
+                        //                            navigator.navigate(HealthEducationDestination)
                     },
                 color = colorResource(R.color.green_app),
                 shape = RoundedCornerShape(20),
@@ -208,44 +184,44 @@ fun HomeScreen (
             verticalAlignment = Alignment.Top,
             horizontalArrangement = Arrangement.Center
         ) {
-                Surface(
-                    modifier = Modifier.size(width = 180.dp, height = 140.dp)
-                        .clickable {
+            Surface(
+                modifier = Modifier.size(width = 180.dp, height = 140.dp)
+                    .clickable {
 //                            navigator.navigate(PharmacyDestination)
-                        },
-                    color = colorResource(R.color.green_app),
-                    shape = RoundedCornerShape(20),
-                    contentColor = Color.Black,
-                    elevation = 1.dp
-                ) {
-                    Text(
-                        stringResource(R.string.pharmacy),
-                        fontWeight = FontWeight.Medium,
-                        fontSize = 16.sp,
-                        textAlign = TextAlign.Center,
-                        modifier = Modifier.padding(vertical = 50.dp)
-                    )
-                }
-            Spacer(modifier = Modifier.width(10.dp))
-                Surface(
-                    modifier = Modifier.size(width = 180.dp, height = 140.dp)
-                        .clickable {
-
-                        },
-                    color = colorResource(R.color.green_app),
-                    shape = RoundedCornerShape(20),
-                    contentColor = Color.Black,
-                    elevation = 1.dp
-                ) {
-                    Text(
-                        stringResource(R.string.first_aid),
-                        fontWeight = FontWeight.Medium,
-                        fontSize = 16.sp,
-                        textAlign = TextAlign.Center,
-                        modifier = Modifier.padding(vertical = 50.dp)
-                    )
-                }
+                    },
+                color = colorResource(R.color.green_app),
+                shape = RoundedCornerShape(20),
+                contentColor = Color.Black,
+                elevation = 1.dp
+            ) {
+                Text(
+                    stringResource(R.string.pharmacy),
+                    fontWeight = FontWeight.Medium,
+                    fontSize = 16.sp,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.padding(vertical = 50.dp)
+                )
             }
+            Spacer(modifier = Modifier.width(10.dp))
+            Surface(
+                modifier = Modifier.size(width = 180.dp, height = 140.dp)
+                    .clickable {
+
+                    },
+                color = colorResource(R.color.green_app),
+                shape = RoundedCornerShape(20),
+                contentColor = Color.Black,
+                elevation = 1.dp
+            ) {
+                Text(
+                    stringResource(R.string.first_aid),
+                    fontWeight = FontWeight.Medium,
+                    fontSize = 16.sp,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.padding(vertical = 50.dp)
+                )
+            }
+        }
         Spacer(modifier = Modifier.height(20.dp))
         Row(
             modifier = Modifier.fillMaxWidth()
@@ -253,43 +229,44 @@ fun HomeScreen (
             verticalAlignment = Alignment.Top,
             horizontalArrangement = Arrangement.Center
         ) {
-                Surface(
-                    modifier = Modifier.size(width = 180.dp, height = 140.dp)
-                        .clickable {
+            Surface(
+                modifier = Modifier.size(width = 180.dp, height = 140.dp)
+                    .clickable {
 
-                        },
-                    color = colorResource(R.color.green_app),
-                    shape = RoundedCornerShape(20),
-                    contentColor = Color.Black,
-                    elevation = 1.dp
-                ) {
-                    Text(
-                        stringResource(R.string.community),
-                        fontWeight = FontWeight.Medium,
-                        fontSize = 16.sp,
-                        textAlign = TextAlign.Center,
-                        modifier = Modifier.padding(vertical = 50.dp)
-                    )
-                }
+                    },
+                color = colorResource(R.color.green_app),
+                shape = RoundedCornerShape(20),
+                contentColor = Color.Black,
+                elevation = 1.dp
+            ) {
+                Text(
+                    stringResource(R.string.community),
+                    fontWeight = FontWeight.Medium,
+                    fontSize = 16.sp,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.padding(vertical = 50.dp)
+                )
+            }
             Spacer(modifier = Modifier.width(10.dp))
-                Surface(
-                    modifier = Modifier.size(width = 180.dp, height = 140.dp)
-                        .clickable {
+            Surface(
+                modifier = Modifier.size(width = 180.dp, height = 140.dp)
+                    .clickable {
 
-                        },
-                    color = colorResource(R.color.green_app),
-                    shape = RoundedCornerShape(20),
-                    contentColor = Color.Black,
-                    elevation = 1.dp
-                ) {
-                    Text(
-                        text = stringResource(R.string.emergency_assistant),
-                        fontWeight = FontWeight.Medium,
-                        fontSize = 16.sp,
-                        textAlign = TextAlign.Center,
-                        modifier = Modifier.padding(vertical = 60.dp)
-                    )
-                }
+                    },
+                color = colorResource(R.color.green_app),
+                shape = RoundedCornerShape(20),
+                contentColor = Color.Black,
+                elevation = 1.dp
+            ) {
+                Text(
+                    text = stringResource(R.string.emergency_assistant),
+                    fontWeight = FontWeight.Medium,
+                    fontSize = 16.sp,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.padding(vertical = 60.dp)
+                )
             }
         }
     }
+}
+

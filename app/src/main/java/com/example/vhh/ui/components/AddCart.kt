@@ -17,12 +17,18 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.vhh.R
 import com.example.vhh.ui.theme.AppColor
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
+@Destination
 @Composable
-fun AddCart(){
+fun AddCart(
+//    navigator: DestinationsNavigator
+){
     Surface (
         modifier = Modifier.size(width = 140.dp, height = 31.dp)
             .clickable {
+//                navigator.navigate(CartDestination)
             },
         color = AppColor,
         shape = RoundedCornerShape(20),
